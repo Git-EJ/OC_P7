@@ -1,3 +1,246 @@
+/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+/* =============================== add perso =========================== */
+a {
+  text-decoration: inherit;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0;
+  margin: 0;
+  border: 0px solid;
+}
+
+@font-face {
+  font-family: "Anton";
+  src: url("/fonts/Anton-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto-Regular.ttf") format("truetype");
+}
+html,
+body {
+  max-width: 1440px;
+  height: 2000px;
+  margin: 0 auto;
+  font-family: "Anton", sans-serif;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html ::-webkit-scrollbar,
+body ::-webkit-scrollbar {
+  display: none;
+}
+
+.header_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+.header_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.header_title_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  position: absolute;
+  top: 5%;
+  left: 6%;
+  cursor: default;
+}
+.header_title_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 0.3em;
+  font-size: clamp(1em, 2vw, 1.8em);
+  color: #ffffff;
+}
+.header_title_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(1em, 1.5vw, 1.4em);
+  color: #ffffff;
+}
+.header_text_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  position: absolute;
+  top: 40%;
+  left: 25%;
+  text-align: center;
+}
+.header_text_content {
+  color: #FFD15B;
+  font-size: clamp(0.8em, 3.5vw, 2.8em);
+  cursor: default;
+}
+.header_search-bar_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 70%;
+  height: 50px;
+  position: absolute;
+  top: 65%;
+  left: 15%;
+}
+.header_search-bar_input {
+  width: 90%;
+  height: 100%;
+  border-radius: 5px 0 0 5px;
+  font-family: "Roboto", sans-serif;
+  padding: 0 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.header_search-bar_input::placeholder {
+  font-size: clamp(1em, 1vw, 1.2em);
+}
+.header_search-bar_icon_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: flex-end;
+  width: 10%;
+  height: 100%;
+  padding-right: 5px;
+  border-radius: 0 5px 5px 0;
+  background: #ffffff;
+}
+.header_search-bar_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex !important;
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  background: #000000;
+  font-size: clamp(1.5em, 1.5vw, 1.8em);
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.header_search-bar_icon:hover {
+  color: #000000;
+  background: #FFD15B;
+}
+
+@media only screen and (max-width: 1360px) {
+  .header_text_container {
+    width: 70%;
+    left: 15%;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .header_search-bar_container {
+    height: 30px;
+    top: 70%;
+  }
+  .header_search-bar_icon_container {
+    padding-right: 0;
+  }
+  .header_search-bar_icon {
+    width: 30px;
+    height: 30px;
+    padding-right: 0;
+    border-radius: 0 5px 5px 0;
+    font-size: clamp(1em, 1.5vw, 1.5em);
+  }
+}
 
 /*# sourceMappingURL=style.css.map */

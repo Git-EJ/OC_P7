@@ -1,0 +1,159 @@
+// HEADER
+.header {
+    &_container {
+        @include flex_center_column;
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+
+    &_img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &_title {
+
+        &_container {
+            @include flex_center_row;
+            position: absolute;
+            top:5%;
+            left:6%;
+            cursor: default;
+        }
+
+        &_content {
+            @include flex_center;
+            padding-right:0.3em;
+            font-size: clamp(1em, 2vw, 1.8em);
+            color: $header-title-color;  
+        }
+
+        &_icon {
+            @include flex_center;
+            font-size: clamp(1em, 1.5vw, 1.4em);
+            color: $header-title-color
+        }
+    } 
+
+    &_text {
+
+        &_container{
+            @include flex_center;
+            width:50%;
+            position: absolute;
+            top: 40%;
+            left:25%;
+            text-align: center;
+        }
+
+        &_content {
+            color: $primary-color;
+            font-size: clamp(0.8em, 3.5vw, 2.8em);
+            cursor:default;
+        }
+    }
+
+    &_search-bar {
+
+        &_container {
+            @include flex_center_row;
+            width:70%;
+            height: 50px;
+            position: absolute;
+            top: 65%;
+            left:15%;
+        }
+        
+        &_input {
+            width:90%;
+            height:100%;
+            border-radius: 5px 0 0 5px;
+            font-family: 'Roboto', sans-serif;
+            padding: 0 1em;
+            white-space: nowrap;
+            overflow: hidden; 
+            text-overflow: ellipsis;
+        
+            &::placeholder {
+                font-size: clamp(1em, 1vw, 1.2em);
+            }
+        }
+
+        &_icon_container {
+            @include flex_center;
+            justify-content: flex-end;
+            width:10%;
+            height:100%;
+            padding-right: 5px; // container height: 50px, icon height: 40px ==> "padding" top&bottom 2(5px)
+            border-radius: 0 5px 5px 0;
+            background: #ffffff;
+        }
+        
+        &_icon {
+            @include flex_center;
+            display: flex !important;
+            color: #ffffff;
+            width: 40px;
+            height: 40px;
+            background: #000000;
+            font-size: clamp(1.5em, 1.5vw, 1.8em);
+            border-radius: 5px;
+            overflow: hidden; //for placeholder elipsis
+            cursor:pointer;
+
+            &:hover {
+                color:#000000;
+                background:$primary-color;
+            }
+        }
+    }
+} 
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////
+        ///////////////// MEDIA QUERIES /////////////////
+/////////////////////////////////////////////////////////////////////////
+
+
+@media only screen and (max-width: 1360px) {
+
+    .header {
+        &_text{
+            &_container{
+                width:70%;
+                left:15%;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 800px) {
+    .header {
+        &_search-bar {
+
+            &_container {
+                height:30px;
+                top: 70%;
+            }
+
+            &_icon_container {
+                padding-right: 0;
+            }
+
+            &_icon {
+                width:30px;
+                height:30px;
+                padding-right: 0;
+                border-radius: 0 5px 5px 0;
+                font-size: clamp(1em, 1.5vw, 1.5em);
+            }
+        }
+    }
+}
+
