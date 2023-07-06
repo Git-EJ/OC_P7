@@ -71,15 +71,18 @@ export class Select {
     const btnFilterData = [
       {
         id: 'btnIngredientsFilter',
-        textContent: 'Ingrédients'
+        textContent: 'Ingrédients',
+        dropDownId: 'btnFilterIngredientsDD'
       },
       {
         id: 'btnKitchenAppliancesFilter',
-        textContent: 'Appareils'
+        textContent: 'Appareils',
+        dropDownId: 'btnFilterKitchenAppliancesDD'
       },
       {
         id: 'btnCookingToolsFilter',
-        textContent: 'Ustensiles'
+        textContent: 'Ustensiles',
+        dropDownId: 'btnFilterCookingToolsDD'
       }
     ]
 
@@ -87,15 +90,16 @@ export class Select {
       this.btnFilterContainer = document.createElement('div')
       this.btnFilterContainer.classList.add('btnFilterContainer')
 
-      this.btnFilter = document.createElement('span')
-      this.btnFilter.classList.add('btnFilter')
-      this.btnFilter.id = el.id
-      this.btnFilter.textContent = el.textContent
+      this.btnFilterText = document.createElement('span')
+      this.btnFilterText.classList.add('btnFilter')
+      this.btnFilterText.id = el.id
+      this.btnFilterText.textContent = el.textContent
 
       this.btnFilterDropdown = document.createElement('em')
+      this.btnFilterDropdown.id = el.dropDownId
       this.btnFilterDropdown.classList.add('fa-solid', 'fa-chevron-down', 'btnFilterDropdown')
 
-      this.btnFilterContainer.appendChild(this.btnFilter)
+      this.btnFilterContainer.appendChild(this.btnFilterText)
       this.btnFilterContainer.appendChild(this.btnFilterDropdown)
       this.selectContainer.appendChild(this.btnFilterContainer)
     })
