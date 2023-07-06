@@ -24,23 +24,28 @@ export class SearchBar {
   }
 
   validity () {
-    this.HeaderSearchBarInput.value === '' ? this.HeaderSearchBarInput.setCustomValidity('champ vide') : this.HeaderSearchBarInput.setCustomValidity('')
+    this.HeaderSearchBarInput.value.trim() === '' ? this.HeaderSearchBarInput.setCustomValidity('champ vide') : this.HeaderSearchBarInput.setCustomValidity('')
+    let timeout = null
 
-    this.HeaderSearchBarInput.addEventListener('input', (e) => {
-      const regex = /^[a-zA-Z àùéèç]+$/
-      if (!regex.test(e.target.value)) {
-        e.target.setCustomValidity('Caractère(s) non autorisé(s)')
-        return false
-      } else {
-        e.target.setCustomValidity('')
-      }
-
-      if (e.target.value === '') {
-        e.target.setCustomValidity('recherche vide')
-        return false
-      } else {
-        e.target.setCustomValidity('')
-      }
-    })
+    const callBackInput = (e) => {
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        const regex = /^[a-zA-Z àùéèç]+$/
+        let value = e.target.value.trim()
+        const newValue = value.replace(/\s{1,}/g, ' ') // s for any whitespace character ; g for global. All matches (don't return after first match)
+        if (value === '') {
+          e.target.setCustomValidity('recherche vide')
+        } else if (!regex.test(value)) {
+          e.target.setCustomValidity('Caractère(s) non autorisé(s)')
+        } else if (value.length !== newValue.length) {
+          value = newValue
+          console.log('value', value)
+        } else {
+          e.target.setCustomValidity('')
+        }
+      }, 500)
+      e.target.setCustomValidity('tempo') // [DEV]
+    }
+    this.HeaderSearchBarInput.addEventListener('input', callBackInput)
   }
 }
