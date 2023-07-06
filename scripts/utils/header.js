@@ -28,7 +28,7 @@ export class Header {
   title () {
     this.HeaderTitleContainer = document.createElement('div')
     this.HeaderTitleContainer.classList.add('header_title_container')
-    this.HeaderTitleContent = document.createElement('span')
+    this.HeaderTitleContent = document.createElement('h2')
     this.HeaderTitleContent.classList.add('header_title_content')
     this.HeaderTitleContent.textContent = 'LES PETITS PLATS'
 
@@ -58,7 +58,7 @@ export class Header {
     this.HeaderTextContainer = document.createElement('div')
     this.HeaderTextContainer.classList.add('header_text_container')
 
-    this.HeaderTextContent = document.createElement('span')
+    this.HeaderTextContent = document.createElement('h1')
     this.HeaderTextContent.classList.add('header_text_content')
     this.HeaderTextContent.textContent = 'CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES'
 
@@ -67,6 +67,7 @@ export class Header {
   }
 
   searchBar () {
+    // eslint-disable-next-line no-unused-vars
     const toto = new SearchBar(this.HeaderContainer)
   }
 }

@@ -266,5 +266,50 @@ body ::-webkit-scrollbar {
     font-size: clamp(1em, 1.5vw, 1.5em);
   }
 }
+.select-Xrecipes_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  padding: 1em 5%;
+  background: #EDEDED;
+}
+
+.select_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 55%;
+}
+
+.btnFilterContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 28%;
+  padding: clamp(0.5em, 1.2vw, 1.4em);
+  font-family: "roboto", sans-serif;
+  border-radius: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: #ffffff;
+}
+
+.Xrecipes_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+.Xrecipes_number {
+  width: fit-content;
+}
+.Xrecipes_text {
+  padding-left: 0.3em;
+}
 
 /*# sourceMappingURL=style.css.map */

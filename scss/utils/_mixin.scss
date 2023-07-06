@@ -14,3 +14,10 @@
     flex-direction: column;
 }
 
+@mixin flex_center_row_jc_space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+

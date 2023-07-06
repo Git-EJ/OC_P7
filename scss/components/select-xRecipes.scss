@@ -1,0 +1,60 @@
+.select-Xrecipes_wrapper {
+    @include flex_center_row_jc_space-between;
+    width:100%;
+    padding: 1em 5%;
+    background: $tertiary-color;
+}
+
+.select_container {
+    @include flex_center_row_jc_space-between;
+    width: 55%;
+}
+
+//// START FOR BUTTON
+.btnFilterContainer{
+    @include flex_center_row_jc_space-between;
+    width: 28%;
+    padding: clamp( 0.5em, 1.2vw, 1.4em);
+    font-family: 'roboto', sans-serif;
+    border-radius: 5px;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    background: #ffffff
+}
+//// END FOR BUTTON
+
+
+
+
+
+
+
+.Xrecipes {
+    &_container {
+        @include flex_center_row_jc_space-between;
+    }
+
+    &_number {
+        width: fit-content;
+    }
+
+    &_text {
+        padding-left: 0.3em;
+    }
+}
+
+//// START FOR SELECT
+// #selectIngredients,
+// #selectKitchenAplliances,
+// #selectCookingTools {
+//     width: 28%;
+//     padding: clamp( 0.5em, 1.2vw, 1.4em);
+//     border-radius: 5px;
+//     white-space: nowrap;
+//     overflow: hidden; 
+//     text-overflow: ellipsis;
+// }
+//// END FOR SELECT
+
+
