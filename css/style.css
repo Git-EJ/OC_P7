@@ -274,6 +274,8 @@ body ::-webkit-scrollbar {
   width: 100%;
   padding: 1em 5%;
   background: #EDEDED;
+  position: sticky;
+  top: 0;
 }
 
 .select_container {
