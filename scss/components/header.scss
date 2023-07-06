@@ -1,4 +1,3 @@
-// HEADER
 .header {
     &_container {
         @include flex_center_column;
@@ -79,28 +78,29 @@
         
             &::placeholder {
                 font-size: clamp(1em, 1vw, 1.2em);
+                color: $search-bar-placeholder-color;
             }
         }
 
         &_icon_container {
             @include flex_center;
             justify-content: flex-end;
-            width:10%;
+            width:8%;
             height:100%;
             padding-right: 5px; // container height: 50px, icon height: 40px ==> "padding" top&bottom 2(5px)
             border-radius: 0 5px 5px 0;
-            background: #ffffff;
+            background: $search-bar-background-color;
         }
         
         &_icon {
             @include flex_center;
             display: flex !important;
-            color: #ffffff;
             width: 40px;
             height: 40px;
             background: #000000;
-            font-size: clamp(1.5em, 1.5vw, 1.8em);
             border-radius: 5px;
+            font-size: clamp(1.5em, 1.5vw, 1.8em);
+            color: #ffffff;
             overflow: hidden; //for placeholder elipsis
             cursor:pointer;
 
@@ -109,11 +109,21 @@
                 background:$primary-color;
             }
         }
+
+        &_xmark_container {
+            @include flex_center;
+            background: $search-bar-background-color;
+            height:100%;
+            width:2%;
+        }
+
+        &_xmark_icon {
+            @include flex_center;
+            display:flex !important;
+            color: $search-bar-placeholder-color;
+        }
     }
 } 
-
-
-
 
 
 
@@ -125,14 +135,29 @@
 @media only screen and (max-width: 1360px) {
 
     .header {
-        &_text{
-            &_container{
+        &_text {
+            &_container {
                 width:70%;
                 left:15%;
             }
         }
     }
 }
+
+@media only screen and (max-width: 900px) {
+
+    .header {
+        &_search-bar {
+            &_input {
+                width: 85%;
+            }
+            &_xmark_container{
+                width:7%;
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 800px) {
     .header {
         &_search-bar {

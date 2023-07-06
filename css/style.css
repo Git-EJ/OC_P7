@@ -189,13 +189,14 @@ body ::-webkit-scrollbar {
 }
 .header_search-bar_input::placeholder {
   font-size: clamp(1em, 1vw, 1.2em);
+  color: #757575;
 }
 .header_search-bar_icon_container {
   display: flex;
   justify-content: center;
   align-items: center;
   justify-content: flex-end;
-  width: 10%;
+  width: 8%;
   height: 100%;
   padding-right: 5px;
   border-radius: 0 5px 5px 0;
@@ -206,12 +207,12 @@ body ::-webkit-scrollbar {
   justify-content: center;
   align-items: center;
   display: flex !important;
-  color: #ffffff;
   width: 40px;
   height: 40px;
   background: #000000;
-  font-size: clamp(1.5em, 1.5vw, 1.8em);
   border-radius: 5px;
+  font-size: clamp(1.5em, 1.5vw, 1.8em);
+  color: #ffffff;
   overflow: hidden;
   cursor: pointer;
 }
@@ -219,11 +220,34 @@ body ::-webkit-scrollbar {
   color: #000000;
   background: #FFD15B;
 }
+.header_search-bar_xmark_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  height: 100%;
+  width: 2%;
+}
+.header_search-bar_xmark_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex !important;
+  color: #757575;
+}
 
 @media only screen and (max-width: 1360px) {
   .header_text_container {
     width: 70%;
     left: 15%;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .header_search-bar_input {
+    width: 85%;
+  }
+  .header_search-bar_xmark_container {
+    width: 7%;
   }
 }
 @media only screen and (max-width: 800px) {

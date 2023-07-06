@@ -67,30 +67,6 @@ export class Header {
   }
 
   searchBar () {
-    this.HeaderSearchBarContainer = document.createElement('form')
-    this.HeaderSearchBarContainer.classList.add('header_search-bar_container')
-
-    this.HeaderSearchBarInput = document.createElement('input')
-    this.HeaderSearchBarInput.classList.add('header_search-bar_input')
-    this.HeaderSearchBarInput.setAttribute('placeholder', 'Rechercher une recette, un ingrédient,...')
-    this.HeaderSearchBarInput.setAttribute('type', 'text')
-    this.HeaderSearchBarInput.setAttribute('name', 'search')
-    this.HeaderSearchBarInput.setAttribute('value', '')
-    this.HeaderSearchBarInput.setAttribute('maxlength', '100')
-
-    this.HeaderSearchBarIconContainer = document.createElement('button')
-    this.HeaderSearchBarIconContainer.id = 'header_search_button'
-    this.HeaderSearchBarIconContainer.classList.add('header_search-bar_icon_container')
-    this.HeaderSearchBarIconContainer.setAttribute('type', 'submit')
-
-    this.HeaderSearchBarIcon = document.createElement('em')
-    this.HeaderSearchBarIcon.classList.add('fa-solid', 'fa-magnifying-glass', 'header_search-bar_icon')
-
-    this.HeaderSearchBarContainer.appendChild(this.HeaderSearchBarInput)
-    this.HeaderSearchBarIconContainer.appendChild(this.HeaderSearchBarIcon)
-    this.HeaderSearchBarContainer.appendChild(this.HeaderSearchBarIconContainer)
-    this.HeaderContainer.appendChild(this.HeaderSearchBarContainer)
-
-    const toto = new SearchBar(this.HeaderSearchBarInput)
+    const toto = new SearchBar(this.HeaderContainer)
   }
 }
