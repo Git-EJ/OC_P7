@@ -1,7 +1,6 @@
 import { Header } from './utils/header.js'
 import { Select } from './components/select.js'
 import { Xrecipes } from './components/xRecipes.js'
-import { getAllIngredient } from './api/api.js'
 
 // eslint-disable-next-line no-unused-vars
 const header = new Header()

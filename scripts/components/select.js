@@ -1,14 +1,145 @@
+import { getAllIngredient, getAllKitchenAppliance, getAllCookingTools } from '../api/api.js'
+
 export class Select {
   constructor () {
     this.extractElements()
-    this.buildElements()
+    this.buildBtnFilter()
+    this.buildElementFilterIngredients()
+    this.buildElementFilterKitchenAppliances()
+    this.buildElementFilterCookingTools()
+    this.buildFilterElementsList()
+    this.DDIngredients()
+    this.DDKitchenAppliances()
+    this.DDCookingTools()
   }
 
   extractElements () {
+    this.body = document.querySelector('body')
     this.selectContainer = document.querySelector('.select_container') // [DEV]change for btnContainer if btn vs select
   }
 
-  // buildElements () {
+  buildBtnFilter () {
+    const btnFilterData = [
+      {
+        id: 'btnIngredientsFilter',
+        textId: 'btnIngredientsFilterText',
+        textContent: 'Ingrédients',
+        dropDownId: 'btnIngredientsFilterDD'
+      },
+      {
+        id: 'btnKitchenAppliancesFilter',
+        textId: 'btnKitchenAppliancesFilterText',
+        textContent: 'Appareils',
+        dropDownId: 'btnKitchenAppliancesFilterDD'
+      },
+      {
+        id: 'btnCookingToolsFilter',
+        textId: 'btnCookingToolsFilterText',
+        textContent: 'Ustensiles',
+        dropDownId: 'btnCookingToolsFilterDD'
+      }
+    ]
+
+    btnFilterData.forEach(el => {
+      this.btnFilterWrapper = document.createElement('div')
+      this.btnFilterWrapper.classList.add('btnFilterWrapper')
+      this.btnFilterWrapper.id = `${el.id}Wrapper`
+
+      this.btnFilterContainer = document.createElement('div')
+      this.btnFilterContainer.classList.add('btnFilterContainer')
+      this.btnFilterContainer.id = `${el.id}container`
+
+      this.btnFilterDropdown = document.createElement('em')
+      this.btnFilterDropdown.classList.add('btnFilterDropdown', 'fa-solid', 'fa-chevron-down')
+      this.btnFilterDropdown.id = el.dropDownId
+
+      this.btnFilterText = document.createElement('span')
+      this.btnFilterText.classList.add('btnFilterText')
+      this.btnFilterText.id = el.textId
+      this.btnFilterText.textContent = el.textContent
+
+      this.btnFilterContainer.appendChild(this.btnFilterText)
+      this.btnFilterContainer.appendChild(this.btnFilterDropdown)
+      this.btnFilterWrapper.appendChild(this.btnFilterContainer)
+      this.selectContainer.appendChild(this.btnFilterWrapper)
+    })
+  }
+
+  buildElementFilterIngredients () {
+    this.btnIngredientsFilterWrapper = document.getElementById('btnIngredientsFilterWrapper')
+    this.buildFilterElementsList(getAllIngredient())
+    this.btnFilterElementList.id = 'filter_container_ingredients'
+    this.btnIngredientsFilterWrapper.appendChild(this.btnFilterElementList)
+  }
+
+  buildElementFilterKitchenAppliances () {
+    this.btnKitchenAppliancesFilterWrapper = document.getElementById('btnKitchenAppliancesFilterWrapper')
+    this.buildFilterElementsList(getAllKitchenAppliance())
+    this.btnFilterElementList.id = 'filter_container_kitchen_appliances'
+    this.btnKitchenAppliancesFilterWrapper.appendChild(this.btnFilterElementList)
+  }
+
+  buildElementFilterCookingTools () {
+    this.btnCookingToolsFilterWrapper = document.getElementById('btnCookingToolsFilterWrapper')
+    this.buildFilterElementsList(getAllCookingTools())
+    this.btnFilterElementList.id = 'filter_container_cooking_tools'
+    this.btnCookingToolsFilterWrapper.appendChild(this.btnFilterElementList)
+  }
+
+  buildFilterElementsList (elements) {
+    this.btnFilterElementList = document.createElement('ul')
+    this.btnFilterElementList.classList.add('filter_container')
+
+    elements && elements.forEach(el => {
+      this.btnFilterElement = document.createElement('li')
+      this.btnFilterElement.classList.add('filter_content')
+      this.btnFilterElement.textContent = el
+      this.btnFilterElementList.appendChild(this.btnFilterElement)
+    })
+  }
+
+  DDIngredients () {
+    this.btnIngredientsFilterDD = document.getElementById('btnIngredientsFilterDD')
+    this.filterContainerIngredients = document.getElementById('filter_container_ingredients')
+    this.DDListener(this.btnIngredientsFilterDD, this.filterContainerIngredients)
+  }
+
+  DDKitchenAppliances () {
+    this.btnKitchenAppliancesFilterDD = document.getElementById('btnKitchenAppliancesFilterDD')
+    this.filterKitchenAppliancesFilterDD = document.getElementById('filter_container_kitchen_appliances')
+    this.DDListener(this.btnKitchenAppliancesFilterDD, this.filterKitchenAppliancesFilterDD)
+  }
+
+  DDCookingTools () {
+    this.btnCookingToolsFilterDD = document.getElementById('btnCookingToolsFilterDD')
+    this.filterContainerCookingTools = document.getElementById('filter_container_cooking_tools')
+    this.DDListener(this.btnCookingToolsFilterDD, this.filterContainerCookingTools)
+  }
+
+  DDListener (btnElementFilterDD, filterContainerElement) {
+    let isDisplay = false
+    btnElementFilterDD.addEventListener('click', () => {
+      filterContainerElement.style.display = isDisplay ? 'none' : 'block'
+      isDisplay = !isDisplay
+    })
+
+    // close when click outside the filters area
+    this.body.addEventListener('click', (e) => {
+      if (!this.selectContainer.contains(e.target)) {
+        filterContainerElement.style.display = 'none'
+        isDisplay = false
+      }
+    })
+  }
+}
+
+
+
+
+
+
+
+// buildBtnFilter () {
   //   this.selectIngredients = document.createElement('select')
   //   this.selectIngredients.id = 'selectIngredients'
   //   this.selectIngredients.setAttribute('name', 'select-ingredients')
@@ -36,7 +167,7 @@ export class Select {
   //   this.selectContainer.appendChild(this.selectCookingTools)
   // }
 
-  // buildElements () {
+  // buildBtnFilter () {
   //   this.btnFilterContainer1 = document.createElement('div')
   //   this.btnFilterContainer1.classList.add('btnFilterContainer')
   //   this.btnFilterContainer2 = document.createElement('div')
@@ -66,46 +197,3 @@ export class Select {
   //   this.selectContainer.appendChild(this.btnFilterContainer2)
   //   this.selectContainer.appendChild(this.btnFilterContainer3)
   // }
-
-  buildElements () {
-    const btnFilterData = [
-      {
-        id: 'btnIngredientsFilter',
-        textId: 'btnIngredientsFilterText',
-        textContent: 'Ingrédients',
-        dropDownId: 'btnIngredientsFilterDD'
-      },
-      {
-        id: 'btnKitchenAppliancesFilter',
-        textId: 'btnKitchenAppliancesFilterText',
-        textContent: 'Appareils',
-        dropDownId: 'btnKitchenAppliancesFilterDD'
-      },
-      {
-        id: 'btnCookingToolsFilter',
-        textId: 'btnCookingToolsFilterText',
-        textContent: 'Ustensiles',
-        dropDownId: 'btnCookingToolsFilterDD'
-      }
-    ]
-
-    btnFilterData.forEach(el => {
-      this.btnFilterContainer = document.createElement('div')
-      this.btnFilterContainer.classList.add('btnFilterContainer')
-      this.btnFilterContainer.id = el.id
-
-      this.btnFilterDropdown = document.createElement('em')
-      this.btnFilterDropdown.classList.add('btnFilterDropdown', 'fa-solid', 'fa-chevron-down')
-      this.btnFilterDropdown.id = el.dropDownId
-
-      this.btnFilterText = document.createElement('span')
-      this.btnFilterText.classList.add('btnFilterText')
-      this.btnFilterText.id = el.textId
-      this.btnFilterText.textContent = el.textContent
-
-      this.btnFilterContainer.appendChild(this.btnFilterText)
-      this.btnFilterContainer.appendChild(this.btnFilterDropdown)
-      this.selectContainer.appendChild(this.btnFilterContainer)
-    })
-  }
-}
