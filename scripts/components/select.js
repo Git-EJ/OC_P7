@@ -118,9 +118,18 @@ export class Select {
 
   DDListener (btnElementFilterDD, filterContainerElement) {
     let isDisplay = false
+
     btnElementFilterDD.addEventListener('click', () => {
       filterContainerElement.style.display = isDisplay ? 'none' : 'block'
       isDisplay = !isDisplay
+
+      if (isDisplay) {
+        btnElementFilterDD.classList.add('fa-chevron-up')
+        btnElementFilterDD.classList.remove('fa-chevron-down')
+      } else {
+        btnElementFilterDD.classList.add('fa-chevron-down')
+        btnElementFilterDD.classList.remove('fa-chevron-up')
+      }
     })
 
     // close when click outside the filters area
