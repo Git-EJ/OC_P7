@@ -1,5 +1,6 @@
 import { getAllIngredient, getAllKitchenAppliance, getAllCookingTools } from '../api/api.js'
 
+
 export class Select {
   constructor () {
     this.extractElements()

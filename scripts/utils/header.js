@@ -1,4 +1,4 @@
-import { SearchBar } from '../components/searchBar.js'
+import { SearchBar } from './headerSearchBar.js'
 
 export class Header {
   constructor () {
@@ -10,11 +10,11 @@ export class Header {
   }
 
   extractElements () {
-    this.HeaderContainer = document.querySelector('.header_wrapper')
+    this.HeaderWrapper = document.querySelector('.header_wrapper')
   }
 
   buildElements () {
-    this.HeaderContainer.classList.add('header_wrapper')
+    this.HeaderWrapper.classList.add('header_wrapper')
 
     this.BannerImg = document.createElement('img')
     this.BannerImg.classList.add('header_img')
@@ -22,7 +22,7 @@ export class Header {
     this.BannerImg.setAttribute('alt', 'Banner')
     this.BannerImg.setAttribute('ariaLabel', 'plat asiatique sur table en bois avec deux baquettes')
 
-    this.HeaderContainer.appendChild(this.BannerImg)
+    this.HeaderWrapper.appendChild(this.BannerImg)
   }
 
   title () {
@@ -51,7 +51,7 @@ export class Header {
     this.HeaderTitleContainer.appendChild(this.HeaderTitleIcon)
     // this.HeaderTitleIconSvg.appendChild(this.HeaderTitleIconPath)
     // this.HeaderTitleContainer.appendChild(this.HeaderTitleIconSvg)
-    this.HeaderContainer.appendChild(this.HeaderTitleContainer)
+    this.HeaderWrapper.appendChild(this.HeaderTitleContainer)
   }
 
   textContent () {
@@ -63,11 +63,11 @@ export class Header {
     this.HeaderTextContent.textContent = 'CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES'
 
     this.HeaderTextContainer.appendChild(this.HeaderTextContent)
-    this.HeaderContainer.appendChild(this.HeaderTextContainer)
+    this.HeaderWrapper.appendChild(this.HeaderTextContainer)
   }
 
   searchBar () {
     // eslint-disable-next-line no-unused-vars
-    const toto = new SearchBar(this.HeaderContainer)
+    const toto = new SearchBar(this.HeaderWrapper)
   }
 }

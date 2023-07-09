@@ -1,84 +1,83 @@
-.filters_recipes-counter_wrapper {
-    display: flex;
-    justify-content: space-between;
-    width:100%;
-    padding: 1em 5%;
-    background: $tertiary-color;
-}
-
-.filters_wrapper {
-    @include flex_center_row_jc_space-between;
-    align-items: flex-start;
-    width: 55%;
-}
-
-
-//// START FOR BUTTON
-.btnFilterWrapper {
-    @include flex_center_column;
-    align-items: flex-start;
-    width:30%;
-    border-radius: 5px;
-    // overflow: hidden;
-    background: #ffffff;
-    font-family: 'roboto', sans-serif;
-}
-
-.btnFilterContainer{
-    @include flex_center_row_jc_space-between;
-    width: 100%;
-    font-size: clamp(0.6em, 1.1vw, 1.3em);
-    padding: clamp( 0.5em, 1.2vw, 1.4em);
-}
-
-.btnFilterText {
-    @include flex_center_column;
-    white-space: nowrap;
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    cursor: default;
-}
-
-.btnFilterDropdown {
-    cursor:pointer;
-}
-//// END FOR BUTTON
-
-
-//// START OF FILTER LIST
-.filter_container {
-    display: none;
-    width: 100%;
-    height:25vh;
-    overflow: auto;
-    padding-left: clamp( 0.5em, 1.2vw, 1.4em);  
-}
-
-.filter_content {
-    font-size: clamp(0.6em, 1vw, 1.3em);
-    padding: 0.2em 0.2em 0.2em 0;
-    color: $filter-content;
-    cursor:default;
-    background: #ffffff;
-
-    &:hover {
-        width: 100%;
-        // padding-left:1em;
-        background: $primary-color;
-        // transform:scale(1.2);
+.filters { //btn + filter list(.filter)
+    &_recipes-counter_wrapper {
+        display: flex;
+        justify-content: space-between;
+        // width:100%;
+        padding: 1em 5%;
+        background: $tertiary-color;
     }
 
+    &_wrapper {
+        @include flex_center_row_jc_space-between;
+        align-items: flex-start;
+        width: 55%;
+    }
 }
-//// END OF FILTER LIST
 
+
+.btn {
+    &FilterWrapper {
+        @include flex_center_column;
+        align-items: flex-start;
+        width:30%;
+        border-radius: 5px;
+        background: #ffffff;
+        font-family: 'roboto', sans-serif;
+    }
+
+    &FilterContainer{
+        @include flex_center_row_jc_space-between;
+        width: 100%;
+        font-size: clamp(0.6em, 1.1vw, 1.3em);
+        padding: $btn-filter_padding;
+    }
+
+    &FilterText {
+        @include flex_center_column;
+        white-space: nowrap;
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        cursor: default;
+    }
+
+    &FilterDropdown {
+        cursor:pointer;
+    }
+}
+
+
+.filter {
+    &_container {
+        display: none;
+        width: 100%;
+        height:25vh;
+        overflow: auto;
+        background: #ffffff;
+    }
+    
+    &_content {
+        font-size: clamp(0.6em, 1vw, 1.1em);
+        padding: 0.2em 0.2em 0.2em 0;
+        padding-left: $btn-filter_padding;
+        color: $filter-content;
+        cursor:default;
+        background: #ffffff;
+
+        &:hover {
+            background: $primary-color;
+            padding-left: calc($btn-filter_padding + 7%);
+            transform: scale(1.2)
+        }
+    }
+}
 
 
 .recipes-counter {
     &_wrapper {
         @include flex_center_row_jc_space-between;
-        align-items: flex-start; //[TODO] center
-        font-size: clamp(0.7em, 1.8vw, 1.7em);
-        cursor:default;
+        align-items: flex-start;
+        font-size: $reciper-counter_font-size;
+        padding:calc($reciper-counter_font-size - $btn-filter_padding) 0;
     }
 
     &_number {
