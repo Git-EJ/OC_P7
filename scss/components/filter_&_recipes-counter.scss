@@ -69,8 +69,63 @@
             transform: scale(1.2)
         }
     }
-}
 
+    &_search-bar {
+        
+        &_container {
+            @include flex_center_row;
+            width:90%;
+            min-height: 10px;
+            border: 1px solid $tertiary-color;
+            border-radius: 2px;
+            margin: 0 auto 0.5em auto;
+            
+            
+        }
+        
+        &_input {
+            @include flex_center;
+            width:100%;
+            height:100%;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 200;
+            padding: 0 0.5em;
+            color: $quaternary-color;
+        }
+        
+        &_icon_container {
+            @include flex_center;
+            height:100%;
+            padding: 5%;
+            background: #ffffff;
+        }
+        
+        &_icon {
+            @include flex_center;
+            display: flex !important;
+            width: 15px;
+            height: 15px;
+            border-radius: 5px;
+            font-size: clamp(0.8em, 1vw, 1em);
+            color: $tertiary-color;
+            cursor:pointer;
+        }
+        
+        &_xmark_container {
+            @include flex_center;
+            width: fit-content;
+            height:100%;
+            padding-right: 2%;
+            background: $search-bar-background-color;
+        }
+        
+        &_xmark_icon {
+            @include flex_center;
+            color: $tertiary-color;
+            font-size: 0.8em;
+        }
+    }
+} 
 
 .recipes-counter {
     &_wrapper {
@@ -108,11 +163,22 @@
 //////////////////////////////////////////////////////////////////////////
         ///////////////// MEDIA QUERIES /////////////////
 /////////////////////////////////////////////////////////////////////////
-
-@media only screen and (max-width: 600px) {
-
+@media only screen and (max-width: 900px) {
+    
     .filters_wrapper {
-        width: 70%;
+        width: 75%;
+    }
+
+    .filter {
+        &_search-bar {
+
+            &_input {
+                padding: 0 0.2em;
+            }
+            &_xmark_icon {
+                font-size: 0.6em;
+            }
+        }
     }
 }
 

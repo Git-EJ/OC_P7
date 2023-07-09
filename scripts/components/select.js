@@ -9,7 +9,7 @@ export class Select {
     this.buildElementFilterKitchenAppliances()
     this.buildElementFilterCookingTools()
     this.buildFilterElementsList()
-    this.buildInputSearch()
+    this.searchBar()
     this.DDIngredients()
     this.DDKitchenAppliances()
     this.DDCookingTools()
@@ -93,7 +93,7 @@ export class Select {
   buildFilterElementsList (elements) {
     this.btnFilterElementList = document.createElement('ul')
     this.btnFilterElementList.classList.add('filter_container')
-    this.buildInputSearch(this.btnFilterElementList)
+    this.searchBar()
 
     elements && elements.forEach(el => {
       this.btnFilterElement = document.createElement('li')
@@ -103,15 +103,9 @@ export class Select {
     })
   }
 
-  buildInputSearch () {
-    this.filterContainer = document.createElement('form')
-
-    this.filterInputSearch = document.createElement('input')
-    this.filterInputSearch.style.border = '1px solid red'
-    this.btnFilterElementList.appendChild(this.filterInputSearch)
-
+  searchBar () {
     // eslint-disable-next-line no-unused-vars
-    // const tutu = new InputSearch()
+    const toto = new InputSearch('filter', this.btnFilterElementList, '', 'button', 30)
   }
 
   // [TODO - refactoriser - START]
@@ -160,67 +154,61 @@ export class Select {
   }
 }
 
+// buildBtnFilter () {
+//   this.selectIngredients = document.createElement('select')
+//   this.selectIngredients.id = 'selectIngredients'
+//   this.selectIngredients.setAttribute('name', 'select-ingredients')
+//   this.selectIngredientsTitle = document.createElement('option')
+//   this.selectIngredientsTitle.textContent = 'Ingrédients'
 
+//   this.selectKitchenAppliances = document.createElement('select')
+//   this.selectKitchenAppliances.id = 'selectKitchenAplliances'
+//   this.selectKitchenAppliances.setAttribute('name', 'select-kitchen-appliances')
+//   this.selectKitchenAppliancesTitle = document.createElement('option')
+//   this.selectKitchenAppliancesTitle.textContent = 'Appareils'
 
+//   this.selectCookingTools = document.createElement('select')
+//   this.selectCookingTools.id = ('selectCookingTools')
+//   this.selectCookingTools.setAttribute('name', 'select-cooking-tools')
+//   this.selectCookingToolsTitle = document.createElement('option')
+//   this.selectCookingToolsTitle.textContent = 'Ustensiles'
 
+//   this.selectIngredients.appendChild(this.selectIngredientsTitle)
+//   this.selectKitchenAppliances.appendChild(this.selectKitchenAppliancesTitle)
+//   this.selectCookingTools.appendChild(this.selectCookingToolsTitle)
 
-
+//   this.selectContainer.appendChild(this.selectIngredients)
+//   this.selectContainer.appendChild(this.selectKitchenAppliances)
+//   this.selectContainer.appendChild(this.selectCookingTools)
+// }
 
 // buildBtnFilter () {
-  //   this.selectIngredients = document.createElement('select')
-  //   this.selectIngredients.id = 'selectIngredients'
-  //   this.selectIngredients.setAttribute('name', 'select-ingredients')
-  //   this.selectIngredientsTitle = document.createElement('option')
-  //   this.selectIngredientsTitle.textContent = 'Ingrédients'
-  
-  //   this.selectKitchenAppliances = document.createElement('select')
-  //   this.selectKitchenAppliances.id = 'selectKitchenAplliances'
-  //   this.selectKitchenAppliances.setAttribute('name', 'select-kitchen-appliances')
-  //   this.selectKitchenAppliancesTitle = document.createElement('option')
-  //   this.selectKitchenAppliancesTitle.textContent = 'Appareils'
+//   this.btnFilterContainer1 = document.createElement('div')
+//   this.btnFilterContainer1.classList.add('btnFilterContainer')
+//   this.btnFilterContainer2 = document.createElement('div')
+//   this.btnFilterContainer2.classList.add('btnFilterContainer')
+//   this.btnFilterContainer3 = document.createElement('div')
+//   this.btnFilterContainer3.classList.add('btnFilterContainer')
 
-  //   this.selectCookingTools = document.createElement('select')
-  //   this.selectCookingTools.id = ('selectCookingTools')
-  //   this.selectCookingTools.setAttribute('name', 'select-cooking-tools')
-  //   this.selectCookingToolsTitle = document.createElement('option')
-  //   this.selectCookingToolsTitle.textContent = 'Ustensiles'
+//   this.btnIngredientsFilter = document.createElement('span')
+//   this.btnIngredientsFilter.classList.add('filterBtn')
+//   this.btnIngredientsFilter.id = 'btnIngredientsFilter'
+//   this.btnIngredientsFilter.textContent = 'Ingrédients'
 
-  //   this.selectIngredients.appendChild(this.selectIngredientsTitle)
-  //   this.selectKitchenAppliances.appendChild(this.selectKitchenAppliancesTitle)
-  //   this.selectCookingTools.appendChild(this.selectCookingToolsTitle)
+//   this.btnKitchenAppliancesFilter = document.createElement('span')
+//   this.btnKitchenAppliancesFilter.classList.add('filterBtn')
+//   this.btnKitchenAppliancesFilter.id = 'btnKitchenAppliancesFilter'
+//   this.btnKitchenAppliancesFilter.textContent = 'Appareils'
 
-  //   this.selectContainer.appendChild(this.selectIngredients)
-  //   this.selectContainer.appendChild(this.selectKitchenAppliances)
-  //   this.selectContainer.appendChild(this.selectCookingTools)
-  // }
+//   this.btnCookingToolsFilter = document.createElement('span')
+//   this.btnCookingToolsFilter.classList.add('filterBtn')
+//   this.btnCookingToolsFilter.id = 'btnCookingToolsFilter'
+//   this.btnCookingToolsFilter.textContent = 'Ustensiles'
 
-  // buildBtnFilter () {
-  //   this.btnFilterContainer1 = document.createElement('div')
-  //   this.btnFilterContainer1.classList.add('btnFilterContainer')
-  //   this.btnFilterContainer2 = document.createElement('div')
-  //   this.btnFilterContainer2.classList.add('btnFilterContainer')
-  //   this.btnFilterContainer3 = document.createElement('div')
-  //   this.btnFilterContainer3.classList.add('btnFilterContainer')
-
-  //   this.btnIngredientsFilter = document.createElement('span')
-  //   this.btnIngredientsFilter.classList.add('filterBtn')
-  //   this.btnIngredientsFilter.id = 'btnIngredientsFilter'
-  //   this.btnIngredientsFilter.textContent = 'Ingrédients'
-
-  //   this.btnKitchenAppliancesFilter = document.createElement('span')
-  //   this.btnKitchenAppliancesFilter.classList.add('filterBtn')
-  //   this.btnKitchenAppliancesFilter.id = 'btnKitchenAppliancesFilter'
-  //   this.btnKitchenAppliancesFilter.textContent = 'Appareils'
-
-  //   this.btnCookingToolsFilter = document.createElement('span')
-  //   this.btnCookingToolsFilter.classList.add('filterBtn')
-  //   this.btnCookingToolsFilter.id = 'btnCookingToolsFilter'
-  //   this.btnCookingToolsFilter.textContent = 'Ustensiles'
-
-  //   this.btnFilterContainer1.appendChild(this.btnIngredientsFilter)
-  //   this.btnFilterContainer2.appendChild(this.btnKitchenAppliancesFilter)
-  //   this.btnFilterContainer3.appendChild(this.btnCookingToolsFilter)
-  //   this.selectContainer.appendChild(this.btnFilterContainer1)
-  //   this.selectContainer.appendChild(this.btnFilterContainer2)
-  //   this.selectContainer.appendChild(this.btnFilterContainer3)
-  // }
+//   this.btnFilterContainer1.appendChild(this.btnIngredientsFilter)
+//   this.btnFilterContainer2.appendChild(this.btnKitchenAppliancesFilter)
+//   this.btnFilterContainer3.appendChild(this.btnCookingToolsFilter)
+//   this.selectContainer.appendChild(this.btnFilterContainer1)
+//   this.selectContainer.appendChild(this.btnFilterContainer2)
+//   this.selectContainer.appendChild(this.btnFilterContainer3)
+// }

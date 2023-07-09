@@ -15,7 +15,7 @@ export function getAllIngredient () {
 }
 // console.log(getAllIngredient())
 
-export function getAllKitchenAppliance () {
+export function getAllKitchenAppliance (toto) {
   const arrayOfAllKitchenAppliance = []
   recipes.forEach(re => {
     if (!arrayOfAllKitchenAppliance.includes(re.appliance)) {
