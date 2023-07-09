@@ -1,6 +1,6 @@
 import { Header } from './utils/header.js'
 import { Select } from './components/select.js'
-import { Xrecipes } from './components/xRecipes.js'
+import { RecipesCounter } from './components/recipesCounter.js'
 
 // eslint-disable-next-line no-unused-vars
 const header = new Header()
@@ -9,4 +9,4 @@ const header = new Header()
 const select = new Select()
 
 // eslint-disable-next-line no-unused-vars
-const xRecipes = new Xrecipes()
+const recipesCounter = new RecipesCounter()

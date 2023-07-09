@@ -15,7 +15,7 @@ export class Select {
 
   extractElements () {
     this.body = document.querySelector('body')
-    this.selectContainer = document.querySelector('.select_container') // [DEV]change for btnContainer if btn vs select
+    this.selectContainer = document.querySelector('.filters_wrapper')
   }
 
   buildBtnFilter () {

@@ -10,11 +10,11 @@ export class Header {
   }
 
   extractElements () {
-    this.HeaderContainer = document.querySelector('.header_container')
+    this.HeaderContainer = document.querySelector('.header_wrapper')
   }
 
   buildElements () {
-    this.HeaderContainer.classList.add('header_container')
+    this.HeaderContainer.classList.add('header_wrapper')
 
     this.BannerImg = document.createElement('img')
     this.BannerImg.classList.add('header_img')

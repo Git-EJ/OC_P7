@@ -112,7 +112,7 @@ body ::-webkit-scrollbar {
   display: none;
 }
 
-.header_container {
+.header_wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -266,7 +266,7 @@ body ::-webkit-scrollbar {
     font-size: clamp(1em, 1.5vw, 1.5em);
   }
 }
-.select-Xrecipes_wrapper {
+.filters_recipes-counter_wrapper {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -274,7 +274,7 @@ body ::-webkit-scrollbar {
   background: #EDEDED;
 }
 
-.select_container {
+.filters_wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -333,15 +333,14 @@ body ::-webkit-scrollbar {
   padding: 0.2em 0.2em 0.2em 0;
   color: #757575;
   cursor: default;
+  background: #ffffff;
 }
 .filter_content:hover {
   width: 100%;
-  padding-left: 1em;
   background: #FFD15B;
-  transform: scale(1.2);
 }
 
-.Xrecipes_container {
+.recipes-counter_wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -350,23 +349,23 @@ body ::-webkit-scrollbar {
   font-size: clamp(0.7em, 1.8vw, 1.7em);
   cursor: default;
 }
-.Xrecipes_number {
+.recipes-counter_number {
   width: fit-content;
 }
-.Xrecipes_text {
+.recipes-counter_text {
   padding-left: 0.3em;
 }
 
 @media only screen and (max-width: 600px) {
-  .select_container {
+  .filters_wrapper {
     width: 70%;
   }
 }
 @media only screen and (max-width: 450px) {
-  .select-Xrecipes_wrapper {
+  .filters_recipes-counter_wrapper {
     padding: 1em 2%;
   }
-  .select_container {
+  .filters_wrapper {
     width: 75%;
   }
 }
