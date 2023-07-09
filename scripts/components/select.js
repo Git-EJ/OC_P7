@@ -1,5 +1,5 @@
 import { getAllIngredient, getAllKitchenAppliance, getAllCookingTools } from '../api/api.js'
-
+import { InputSearch } from './inputSearch.js'
 
 export class Select {
   constructor () {
@@ -9,6 +9,7 @@ export class Select {
     this.buildElementFilterKitchenAppliances()
     this.buildElementFilterCookingTools()
     this.buildFilterElementsList()
+    this.buildInputSearch()
     this.DDIngredients()
     this.DDKitchenAppliances()
     this.DDCookingTools()
@@ -66,6 +67,7 @@ export class Select {
     })
   }
 
+  // [TODO - refactoriser - START]
   buildElementFilterIngredients () {
     this.btnIngredientsFilterWrapper = document.getElementById('btnIngredientsFilterWrapper')
     this.buildFilterElementsList(getAllIngredient())
@@ -86,10 +88,12 @@ export class Select {
     this.btnFilterElementList.id = 'filter_container_cooking_tools'
     this.btnCookingToolsFilterWrapper.appendChild(this.btnFilterElementList)
   }
+  // [TODO - refactoriser - END
 
   buildFilterElementsList (elements) {
     this.btnFilterElementList = document.createElement('ul')
     this.btnFilterElementList.classList.add('filter_container')
+    this.buildInputSearch(this.btnFilterElementList)
 
     elements && elements.forEach(el => {
       this.btnFilterElement = document.createElement('li')
@@ -99,6 +103,18 @@ export class Select {
     })
   }
 
+  buildInputSearch () {
+    this.filterContainer = document.createElement('form')
+
+    this.filterInputSearch = document.createElement('input')
+    this.filterInputSearch.style.border = '1px solid red'
+    this.btnFilterElementList.appendChild(this.filterInputSearch)
+
+    // eslint-disable-next-line no-unused-vars
+    // const tutu = new InputSearch()
+  }
+
+  // [TODO - refactoriser - START]
   DDIngredients () {
     this.btnIngredientsFilterDD = document.getElementById('btnIngredientsFilterDD')
     this.filterContainerIngredients = document.getElementById('filter_container_ingredients')
@@ -116,6 +132,7 @@ export class Select {
     this.filterContainerCookingTools = document.getElementById('filter_container_cooking_tools')
     this.DDListener(this.btnCookingToolsFilterDD, this.filterContainerCookingTools)
   }
+  // [TODO - refactoriser - END]
 
   DDListener (btnElementFilterDD, filterContainerElement) {
     let isDisplay = false
@@ -155,7 +172,7 @@ export class Select {
   //   this.selectIngredients.setAttribute('name', 'select-ingredients')
   //   this.selectIngredientsTitle = document.createElement('option')
   //   this.selectIngredientsTitle.textContent = 'Ingrédients'
-
+  
   //   this.selectKitchenAppliances = document.createElement('select')
   //   this.selectKitchenAppliances.id = 'selectKitchenAplliances'
   //   this.selectKitchenAppliances.setAttribute('name', 'select-kitchen-appliances')

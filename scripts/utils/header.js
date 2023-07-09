@@ -1,4 +1,5 @@
-import { SearchBar } from './headerSearchBar.js'
+// import { HeaderSearchBar } from './headerSearchBar.js'
+import { InputSearch } from '../components/inputSearch.js'
 
 export class Header {
   constructor () {
@@ -67,7 +68,9 @@ export class Header {
   }
 
   searchBar () {
-    // eslint-disable-next-line no-unused-vars
-    const toto = new SearchBar(this.HeaderWrapper)
+    this.placeholder_content = 'Rechercher une recette, un ingrédient,...'
+
+    // // eslint-disable-next-line no-unused-vars
+    const inputSearch = new InputSearch('header', this.HeaderWrapper, this.placeholder_content)
   }
 }
