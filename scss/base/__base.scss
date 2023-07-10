@@ -8,3 +8,7 @@ body {
     -ms-overflow-style: none;
     ::-webkit-scrollbar {display: none}
 }
+
+.hidden {
+    display: none!important;
+}

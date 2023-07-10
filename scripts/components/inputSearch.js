@@ -6,12 +6,14 @@
  * @param {number} maxLength input maxlength
  */
 export class InputSearch {
-  constructor (Name, wrapper, placeholder, type, maxLength) {
+  constructor (Name, wrapper, placeholder, type, maxLength, onInput = null, onChange = null) {
     this.name = Name
     this.wrapper = wrapper
     this.placeholderContent = placeholder
     this.type = type
     this.maxLength = maxLength
+    this.onInput = onInput
+    this.onChange = onChange
     this.buildElements()
     this.init()
     this.placeholder()
@@ -70,14 +72,14 @@ export class InputSearch {
     this.searchBarInput.addEventListener('blur', this.blur)
   }
 
-  validity () {
+  validity (pRegex = '') {
     this.searchBarInput.value.trim() === '' ? this.searchBarInput.setCustomValidity('champ vide') : this.searchBarInput.setCustomValidity('')
     let timeout = null
-
+    const that = this
     const callBackInput = (e) => {
       clearTimeout(timeout)
       timeout = setTimeout(() => {
-        const regex = /^[a-zA-Z àùéèç]+$/
+        const regex = pRegex === '' ? /^[a-zA-Z àùéèç]+$/ : pRegex
         let value = e.target.value.trim()
         const newValue = value.replace(/\s{1,}/g, ' ') // s for any whitespace character ; g for global. All matches (don't return after first match)
         if (value === '') {
@@ -90,6 +92,7 @@ export class InputSearch {
         } else {
           e.target.setCustomValidity('')
         }
+        that.onInput && that.onInput(e)
       }, 500)
       e.target.setCustomValidity('tempo') // [DEV]
     }

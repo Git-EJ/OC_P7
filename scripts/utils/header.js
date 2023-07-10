@@ -1,12 +1,10 @@
 import { InputSearch } from '../components/inputSearch.js'
 
 export class Header {
-  constructor () {
+  constructor (onInput) {
+    this.onInput = onInput
     this.extractElements()
     this.buildElements()
-    this.title()
-    this.textContent()
-    this.searchBar()
   }
 
   extractElements () {
@@ -14,8 +12,13 @@ export class Header {
   }
 
   buildElements () {
-    this.headerWrapper.classList.add('header_wrapper')
+    this.buildBannerImg()
+    this.buildTitle()
+    this.buildTextContent()
+    this.buildSearchBar()
+  }
 
+  buildBannerImg () {
     this.bannerImg = document.createElement('img')
     this.bannerImg.classList.add('header_img')
     this.bannerImg.setAttribute('src', './assets/banner/banner_1440x667.jpg')
@@ -25,36 +28,22 @@ export class Header {
     this.headerWrapper.appendChild(this.bannerImg)
   }
 
-  title () {
+  buildTitle () {
     this.headerTitleContainer = document.createElement('div')
     this.headerTitleContainer.classList.add('header_title_container')
     this.headerTitleContent = document.createElement('h2')
     this.headerTitleContent.classList.add('header_title_content')
     this.headerTitleContent.textContent = 'LES PETITS PLATS'
 
-    // this.headerTitleContainer.innerHTML = 'LES PETITS PLATS <svg class="header_title_icon" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256-96a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/></svg>'
-
-    // this.headerTitleIconSvg = document.createElement('svg')
-    // this.headerTitleIconSvg.classList.add('header_title_icon')
-    // this.headerTitleIconSvg.setAttribute('viewBox', '0 0 512 512')
-    // this.headerTitleIconPath = document.createElement('path')
-    // this.headerTitleIconPath.setAttribute('d', 'M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256-96a96 96 0 1 1 0 192 96 96 0 1 1 0-192z')
-
-    // this.headerTitleIconSvg = document.createElement('img')
-    // this.headerTitleIconSvg.classList.add('header_title_icon')
-    // this.headerTitleIconSvg.setAttribute('src', '/assets/icons/circle-dot-regular.svg')
-
     this.headerTitleIcon = document.createElement('em')
     this.headerTitleIcon.classList.add('fa-regular', 'fa-circle-dot', 'header_title_icon')
 
     this.headerTitleContainer.appendChild(this.headerTitleContent)
     this.headerTitleContainer.appendChild(this.headerTitleIcon)
-    // this.headerTitleIconSvg.appendChild(this.headerTitleIconPath)
-    // this.headerTitleContainer.appendChild(this.headerTitleIconSvg)
     this.headerWrapper.appendChild(this.headerTitleContainer)
   }
 
-  textContent () {
+  buildTextContent () {
     this.headerTextContainer = document.createElement('div')
     this.headerTextContainer.classList.add('header_text_container')
 
@@ -66,10 +55,8 @@ export class Header {
     this.headerWrapper.appendChild(this.headerTextContainer)
   }
 
-  searchBar () {
+  buildSearchBar () {
     this.placeholderContent = 'Rechercher une recette, un ingrédient,...'
-
-    // eslint-disable-next-line no-unused-vars
-    const inputSearch = new InputSearch('header', this.headerWrapper, this.placeholderContent, 'button', 100)
+    this.searchBar = new InputSearch('header', this.headerWrapper, this.placeholderContent, 'submit', 100, this.onInput)
   }
 }

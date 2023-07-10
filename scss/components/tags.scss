@@ -1,0 +1,85 @@
+.tags {
+
+  &_wrapper {
+    @include flex_center;
+    justify-content: space-between;
+    margin-bottom: 1em;  
+    padding: 0 5%;
+    background: $tertiary-color;
+  }
+  
+  &_container {
+    display: flex;
+    flex-wrap: wrap;
+    width:55%;
+    border-radius: 5px;
+  }
+
+  &_container > :nth-child(3n + 2) {  // 2nd element + 3 + 3 + 3 etc...
+    margin: 0 5%;
+  }
+
+  &_container > :nth-child(6n + 4),
+  &_container > :nth-child(6n + 5),
+  &_container > :nth-child(6n + 6) {  // 4, 5, 6 element + 6 + 6 + 6 etc...
+    margin-top: 0.5em ;
+    margin-bottom: 0.5em;
+  }
+}
+
+
+.tag {
+  
+  &_container {
+    @include flex_center_row_jc_space-between;
+    width:30%;
+    padding : $btn-filter_padding;
+    background-color: $primary-color;
+    border-radius: 5px;
+  }
+
+  &_text {
+    font-family: 'roboto', sans-serif;
+    font-size: $btn-filter_font-size;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    cursor:default;
+  }
+  
+  &_xmark {
+    font-size: $btn-filter_font-size;
+    cursor:pointer;
+  }
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////
+        ///////////////// MEDIA QUERIES /////////////////
+/////////////////////////////////////////////////////////////////////////
+
+@media only screen and (max-width: 900px) {
+    
+  .tags_container {
+    width: 75%;
+  }
+
+  .tag {
+    &_xmark {
+      font-size: 0.6em;
+    }
+  }
+}
+
+ @media only screen and (max-width: 450px) {
+    
+  .tags_wrapper {
+    padding: 0 2% 1em 2%;
+  }
+
+  .tags_container {
+    width: 75%;
+  }
+}
+

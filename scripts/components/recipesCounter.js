@@ -20,4 +20,11 @@ export class RecipesCounter {
     this.recipesCounterContainer.appendChild(this.recipesCounterNumberContent)
     this.recipesCounterContainer.appendChild(this.recipesCounterTextContent)
   }
+
+  updateCount () {
+    // [TODO]
+    // count recipes
+    // update recipes count
+    this.recipesCounterNumberContent.textContent = '12'
+  }
 }

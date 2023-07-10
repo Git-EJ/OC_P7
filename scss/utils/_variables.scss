@@ -13,14 +13,14 @@ $primary-color: #FFD15B;
 $secondary-color: #2C2C2C;
 $tertiary-color: #EDEDED; // OC = #C6C6C6; ==> != figma rendering for bg select
 $quaternary-color: #C6C6C6;
-
 $header-title-color: #ffffff; 
-
 $search-bar-background-color: #ffffff;
 $search-bar-placeholder-color: #757575;
-
 $filter-content: #757575;
 
 $btn-filter_padding: clamp(0.5em, 1.2vw, 1.4em);
+$btn-filter_font-size: clamp(0.6em, 1.1vw, 1.3em);
+
+$btn-2-filter-wrapper_margin: 0 5%;
 
 $reciper-counter_font-size: clamp(0.7em, 1.8vw, 1.7em);

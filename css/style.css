@@ -112,6 +112,10 @@ body ::-webkit-scrollbar {
   display: none;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .header_wrapper {
   display: flex;
   justify-content: center;
@@ -276,9 +280,10 @@ body ::-webkit-scrollbar {
 }
 .filters_wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-direction: row;
+  justify-content: flex-start;
   align-items: flex-start;
   width: 55%;
 }
@@ -293,6 +298,9 @@ body ::-webkit-scrollbar {
   border-radius: 5px;
   background: #ffffff;
   font-family: "roboto", sans-serif;
+}
+.btnFilterWrapper:nth-child(2) {
+  margin: 0 5%;
 }
 .btnFilterContainer {
   display: flex;
@@ -435,6 +443,69 @@ body ::-webkit-scrollbar {
   width: 100%;
   height: 300px;
   background-color: brown;
+}
+
+.tags_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+  padding: 0 5%;
+  background: #EDEDED;
+}
+.tags_container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 55%;
+  border-radius: 5px;
+}
+.tags_container > :nth-child(3n+2) {
+  margin: 0 5%;
+}
+.tags_container > :nth-child(6n+4), .tags_container > :nth-child(6n+5), .tags_container > :nth-child(6n+6) {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.tag_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 30%;
+  padding: clamp(0.5em, 1.2vw, 1.4em);
+  background-color: #FFD15B;
+  border-radius: 5px;
+}
+.tag_text {
+  font-family: "roboto", sans-serif;
+  font-size: clamp(0.6em, 1.1vw, 1.3em);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: default;
+}
+.tag_xmark {
+  font-size: clamp(0.6em, 1.1vw, 1.3em);
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 900px) {
+  .tags_container {
+    width: 75%;
+  }
+  .tag_xmark {
+    font-size: 0.6em;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .tags_wrapper {
+    padding: 0 2% 1em 2%;
+  }
+  .tags_container {
+    width: 75%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

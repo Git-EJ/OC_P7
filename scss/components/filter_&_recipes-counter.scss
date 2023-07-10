@@ -2,16 +2,16 @@
     &_recipes-counter_wrapper {
         display: flex;
         justify-content: space-between;
-        // width:100%;
         padding: 1em 5%;
         background: $tertiary-color;
     }
 
     &_wrapper {
-        @include flex_center_row_jc_space-between;
+        @include flex_center_row;
+        justify-content: flex-start;
         align-items: flex-start;
         width: 55%;
-    }
+    }  
 }
 
 
@@ -23,13 +23,18 @@
         border-radius: 5px;
         background: #ffffff;
         font-family: 'roboto', sans-serif;
+
+        &:nth-child(2) {
+            margin: $btn-2-filter-wrapper_margin;
+        }
     }
 
     &FilterContainer{
         @include flex_center_row_jc_space-between;
         width: 100%;
-        font-size: clamp(0.6em, 1.1vw, 1.3em);
+        font-size: $btn-filter_font-size;
         padding: $btn-filter_padding;
+
     }
 
     &FilterText {

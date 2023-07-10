@@ -1,12 +1,17 @@
 import { Header } from './utils/header.js'
 import { Select } from './components/select.js'
 import { RecipesCounter } from './components/recipesCounter.js'
+import { Tags } from './components/tags.js'
 
-// eslint-disable-next-line no-unused-vars
-const header = new Header()
+export const header = new Header()
 
-// eslint-disable-next-line no-unused-vars
-const select = new Select()
+export const select = new Select()
 
-// eslint-disable-next-line no-unused-vars
-const recipesCounter = new RecipesCounter()
+export const recipesCounter = new RecipesCounter()
+
+export const tags = new Tags()
+
+// header.searchBar.onInput = (e) => {
+//   // filters recipes
+//   console.log(e.target.value)
+// }
