@@ -12,6 +12,5 @@ export const recipesCounter = new RecipesCounter()
 export const tags = new Tags()
 
 // header.searchBar.onInput = (e) => {
-//   // filters recipes
 //   console.log(e.target.value)
 // }

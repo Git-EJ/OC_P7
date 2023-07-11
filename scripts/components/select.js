@@ -3,7 +3,8 @@ import { InputSearch } from './inputSearch.js'
 import { recipes } from '../../data/recipes.js'
 
 export class Select {
-  constructor () {
+  constructor (onInput) {
+    this.onInput = onInput
     this.extractElements()
     this.buildBtnFilter()
     this.buildElementFilters()
@@ -108,7 +109,7 @@ export class Select {
   }
 
   buildSearchBar (ul) {
-    return new InputSearch('filter', ul, '', 'button', 30)
+    return new InputSearch('filter', ul, '', 'button', 30, this.onInput)
   }
 
   // [TODO - refactoriser - START]
