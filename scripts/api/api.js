@@ -1,41 +1,79 @@
+// import { recipes } from '../../data/recipes.js'
+
 export function getAllIngredient (recipes) {
   const set = new Set()
   recipes.forEach(re => {
     re.ingredients.forEach(ins => {
-      set.add(ins.ingredient.charAt(0).toUpperCase() + ins.ingredient.slice(1))
+      set.add(ins.ingredient.charAt(0).toUpperCase() + ins.ingredient.slice(1).toLowerCase())
     })
   })
   return [...set].sort()
 }
-// console.log(getAllIngredient())
+// console.log(getAllIngredient(recipes))
 
-// [TODO START]
 export function getAllKitchenAppliance (recipes) {
-  const arrayOfAllKitchenAppliance = []
-  recipes.forEach(re => {
-    if (!arrayOfAllKitchenAppliance.includes(re.appliance)) {
-      re.appliance.charAt(0).toUpperCase()
-      re.appliance.slice(1)
-      arrayOfAllKitchenAppliance.push(re.appliance)
-    }
+  const set = new Set()
+  recipes.forEach(app => {
+    set.add(app.appliance.charAt(0).toUpperCase() + app.appliance.slice(1).toLowerCase())
   })
-  arrayOfAllKitchenAppliance.sort()
-  return arrayOfAllKitchenAppliance
+  return [...set].sort()
 }
-// console.log(getAllKitchenAppliance())
+// console.log(getAllKitchenAppliance(recipes))
 
 export function getAllCookingTools (recipes) {
-  const arrayOfAllCookingTools = []
+  const set = new Set()
   recipes.forEach(re => {
-    re.ustensils.forEach(ust => {
-      const Ust = ust.charAt(0).toUpperCase() + ust.slice(1)
-      if (!arrayOfAllCookingTools.includes(Ust)) {
-        arrayOfAllCookingTools.push(Ust)
-      }
+    re.ustensils.forEach(us => {
+      set.add(us.charAt(0).toUpperCase() + us.slice(1).toLowerCase())
     })
   })
-  arrayOfAllCookingTools.sort()
-  return arrayOfAllCookingTools
+  return [...set].sort()
 }
-// console.log(getAllCookingTools())
-// [TODO END]
+// console.log(getAllCookingTools(recipes))
+
+export function getAllId (recipes) {
+  const set = new Set()
+  recipes.forEach(re => {
+    set.add(re.id)
+  })
+  return [...set]
+}
+// console.log(getAllId(recipes))
+
+export function getAllImage (recipes) {
+  const set = new Set()
+  recipes.forEach(re => {
+    set.add(re.image)
+  })
+  return [...set]
+}
+// console.log(getAllImage(recipes))
+
+export function getAllName (recipes) {
+  const set = new Set()
+  recipes.forEach(re => {
+    set.add(re.name)
+  })
+  return [...set]
+}
+// console.log(getAllName(recipes))
+
+export function getAllDescription (recipes) {
+  const set = new Set()
+  recipes.forEach(re => {
+    set.add(re.description)
+  })
+  return [...set]
+}
+// console.log(getAllDescription(recipes))
+
+export function getAllIngredients (recipes) {
+  const set = new Set()
+  recipes.forEach(re => {
+    re.ingredients.forEach(ins => {
+      set.add(ins)
+    })
+  })
+  return [...set]
+}
+// console.log(getAllIngredients(recipes))

@@ -1,47 +1,71 @@
 export class Tags {
   constructor () {
     this.extractElements()
-    this.buildElements()
+    this.buildTagsContainer()
+    this.tagDisplay()
     this.closeTag()
   }
 
   extractElements () {
     this.tagsWrapper = document.querySelector('.tags_wrapper')
+    this.filterContent = document.querySelectorAll('li')
   }
 
-  buildElements () {
+  buildTagsContainer () {
     this.tagsContainer = document.createElement('div')
     this.tagsContainer.classList.add('tags_container')
+  }
 
-    for (let i = 0; i < 6; i++) {
-      this.tagContainer = document.createElement('div')
-      this.tagContainer.classList.add('tag_container')
-      this.tagContainer.id = 'tag_container' + i
+  /**
+   * @param {string} liTextContent = filter text content (li)
+   */
+  buildTags (liTextContent) {
+    this.tagContainer = document.createElement('div')
+    this.tagContainer.classList.add('tag_container')
+    this.tagContainer.id = `tag_container_${liTextContent}`
 
-      this.tagsText = document.createElement('span')
-      this.tagsText.classList.add('tag_text')
-      this.tagsText.textContent = 'Lait de tata ' + i
+    this.tagsText = document.createElement('span')
+    this.tagsText.classList.add('tag_text')
+    this.tagsText.textContent = liTextContent
 
-      this.tagsXmark = document.createElement('em')
-      this.tagsXmark.classList.add('fa-solid', 'fa-xmark', 'tag_xmark')
-      this.tagsXmark.id = 'tag_xmark' + i
+    this.tagsXmark = document.createElement('em')
+    this.tagsXmark.classList.add('fa-solid', 'fa-xmark', 'tag_xmark')
+    this.tagsXmark.id = `tag_xmark_${liTextContent}`
 
-      this.tagContainer.appendChild(this.tagsText)
-      this.tagContainer.appendChild(this.tagsXmark)
-      this.tagsContainer.appendChild(this.tagContainer)
-    }
+    this.tagContainer.appendChild(this.tagsText)
+    this.tagContainer.appendChild(this.tagsXmark)
+    this.tagsContainer.appendChild(this.tagContainer)
     this.tagsWrapper.appendChild(this.tagsContainer)
+  }
+
+  tagDisplay () {
+    this.filterContent.forEach(li => {
+      li.addEventListener('click', () => {
+        let tagDisplay = false
+
+        const tags = document.querySelectorAll('.tag_container')
+        tags.forEach(t => {
+          if (t.id === `tag_container_${li.textContent}`) {
+            tagDisplay = true
+          }
+        })
+
+        if (!tagDisplay) {
+          this.buildTags(li.textContent)
+          this.closeTag()
+        }
+      })
+    })
   }
 
   closeTag () {
     this.close = document.querySelectorAll('.tag_xmark')
 
     const clickXmark = (e) => {
-      const xContainer = e.target
-      const tagContainer = xContainer.parentNode
+      const xMarkContainer = e.target
+      const tagContainer = xMarkContainer.parentNode
       tagContainer.remove()
     }
-
     this.close.forEach(el => {
       el.addEventListener('click', clickXmark)
     })

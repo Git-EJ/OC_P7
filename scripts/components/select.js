@@ -1,4 +1,4 @@
-import { getAllIngredient } from '../api/api.js'
+import { getAllCookingTools, getAllIngredient, getAllKitchenAppliance } from '../api/api.js'
 import { InputSearch } from './inputSearch.js'
 import { recipes } from '../../data/recipes.js'
 
@@ -8,9 +8,7 @@ export class Select {
     this.extractElements()
     this.buildBtnFilter()
     this.buildElementFilters()
-    this.DDIngredients()
-    this.DDKitchenAppliances()
-    this.DDCookingTools()
+    this.DDElements()
   }
 
   extractElements () {
@@ -40,19 +38,19 @@ export class Select {
       }
     ].forEach(el => {
       this.btnFilterWrapper = document.createElement('div')
-      this.btnFilterWrapper.classList.add('btnFilterWrapper')
+      this.btnFilterWrapper.classList.add('btn_filter_wrapper')
       this.btnFilterWrapper.id = `${el.id}Wrapper`
 
       this.btnFilterContainer = document.createElement('div')
-      this.btnFilterContainer.classList.add('btnFilterContainer')
+      this.btnFilterContainer.classList.add('btn_filter_container')
       this.btnFilterContainer.id = `${el.id}container`
 
       this.btnFilterDropdown = document.createElement('em')
-      this.btnFilterDropdown.classList.add('btnFilterDropdown', 'fa-solid', 'fa-chevron-down')
+      this.btnFilterDropdown.classList.add('btn_filter_dropdown', 'fa-solid', 'fa-chevron-down')
       this.btnFilterDropdown.id = el.dropDownId
 
       this.btnFilterText = document.createElement('span')
-      this.btnFilterText.classList.add('btnFilterText')
+      this.btnFilterText.classList.add('btn_filter_text')
       this.btnFilterText.id = el.textId
       this.btnFilterText.textContent = el.textContent
 
@@ -66,20 +64,24 @@ export class Select {
   buildElementFilters () {
     const data = [
       {
-        id: 'filter_container_ingredients',
+        getFunction: getAllIngredient,
+        id: 'filterContainerIngredients',
         wrapper: 'btnIngredientsFilterWrapper'
       },
       {
-        id: 'filter_container_kitchen_appliances',
+        getFunction: getAllKitchenAppliance,
+        id: 'filterContainerKitchenAppliances',
         wrapper: 'btnKitchenAppliancesFilterWrapper'
       },
       {
-        id: 'filter_container_cooking_tools',
+        getFunction: getAllCookingTools,
+        id: 'filterContainerCookingTools',
         wrapper: 'btnCookingToolsFilterWrapper'
       }
     ]
     data.forEach(d => {
-      const ul = this.buildFilterElementsList(getAllIngredient(recipes), d.id)
+      const elements = d.getFunction(recipes)
+      const ul = this.buildFilterElementsList(elements, d.id)
       document.getElementById(d.wrapper).appendChild(ul)
     })
   }
@@ -88,6 +90,7 @@ export class Select {
     const ul = document.createElement('ul')
     ul.classList.add('filter_container')
     ul.id = id
+
     this.buildSearchBar(ul).onInput = (e) => {
       const search = e.target.value.toLowerCase()
       const elements = [...ul.querySelectorAll('li')]
@@ -99,6 +102,7 @@ export class Select {
         }
       })
     }
+
     elements && elements.forEach(el => {
       this.btnFilterElement = document.createElement('li')
       this.btnFilterElement.classList.add('filter_content')
@@ -112,25 +116,18 @@ export class Select {
     return new InputSearch('filter', ul, '', 'button', 30, this.onInput)
   }
 
-  // [TODO - refactoriser - START]
-  DDIngredients () {
-    this.btnIngredientsFilterDD = document.getElementById('btnIngredientsFilterDD')
-    this.filterContainerIngredients = document.getElementById('filter_container_ingredients')
-    this.DDListener(this.btnIngredientsFilterDD, this.filterContainerIngredients)
+  DDElements () {
+    const data = [
+      { id: 'Ingredients' },
+      { id: 'KitchenAppliances' },
+      { id: 'CookingTools' }
+    ]
+    data.forEach(d => {
+      this[`btn${d.id}FilterDD`] = document.getElementById(`btn${d.id}FilterDD`)
+      this[`filterContainer${d.id}`] = document.getElementById(`filterContainer${d.id}`)
+      this.DDListener(this[`btn${d.id}FilterDD`], this[`filterContainer${d.id}`])
+    })
   }
-
-  DDKitchenAppliances () {
-    this.btnKitchenAppliancesFilterDD = document.getElementById('btnKitchenAppliancesFilterDD')
-    this.filterKitchenAppliancesFilterDD = document.getElementById('filter_container_kitchen_appliances')
-    this.DDListener(this.btnKitchenAppliancesFilterDD, this.filterKitchenAppliancesFilterDD)
-  }
-
-  DDCookingTools () {
-    this.btnCookingToolsFilterDD = document.getElementById('btnCookingToolsFilterDD')
-    this.filterContainerCookingTools = document.getElementById('filter_container_cooking_tools')
-    this.DDListener(this.btnCookingToolsFilterDD, this.filterContainerCookingTools)
-  }
-  // [TODO - refactoriser - END]
 
   DDListener (btnElementFilterDD, filterContainerElement) {
     let isDisplay = false
@@ -138,17 +135,29 @@ export class Select {
     btnElementFilterDD.addEventListener('click', () => {
       isDisplay = !isDisplay
       filterContainerElement.style.display = isDisplay ? 'block' : 'none'
-      btnElementFilterDD.classList.add('fa-chevron-' + (isDisplay ? 'up' : 'down'))
-      btnElementFilterDD.classList.remove('fa-chevron-' + (isDisplay ? 'down' : 'up'))
+      btnElementFilterDD.classList.toggle('fa-chevron-up', isDisplay)
+      btnElementFilterDD.classList.toggle('fa-chevron-down', !isDisplay)
     })
 
+    // [TODO]
     // close when click outside the filters area
     this.body.addEventListener('click', (e) => {
-      if (!this.selectContainer.contains(e.target)) {
+      this.tags = document.querySelector('.tags_wrapper')
+      this.tag = document.querySelector('.tag_container')
+      this.close = document.querySelector('.tag_xmark')
+      // console.log(e.target)
+      if (!this.selectContainer.contains(e.target) && (this.tag && !this.tags.contains(e.target))) {
+        // console.log('1')
         filterContainerElement.style.display = 'none'
         btnElementFilterDD.classList.add('fa-chevron-down')
         btnElementFilterDD.classList.remove('fa-chevron-up')
         isDisplay = false
+      // } else if (!this.selectContainer.contains(e.target)) {
+      //   console.log('2')
+      //   filterContainerElement.style.display = 'none'
+      //   btnElementFilterDD.classList.add('fa-chevron-down')
+      //   btnElementFilterDD.classList.remove('fa-chevron-up')
+      //   isDisplay = false
       }
     })
   }

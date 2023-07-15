@@ -1,9 +1,10 @@
 /**
- * @param {string} Name for class an Id
+ * @param {String} Name for class an Id
  * @param {HTMLElement} wrapper for appendchild
- * @param {string} placeholder content for input placeholder
- * @param {string} type button type
- * @param {number} maxLength input maxlength
+ * @param {String} placeholder content for input placeholder
+ * @param {String} type button type
+ * @param {Number} maxLength input maxlength
+ * @param {String} onInput input value
  */
 export class InputSearch {
   constructor (Name, wrapper, placeholder, type, maxLength, onInput = null) {
@@ -70,12 +71,11 @@ export class InputSearch {
     this.searchBarInput.addEventListener('focus', this.focus)
     this.searchBarInput.addEventListener('blur', this.blur)
   }
-  // [TODO] probleme avec la tempo lors d ela saisie de deux espaces consecutif
 
   validity (pRegex = '') {
     this.searchBarInput.value.trim() === '' ? this.searchBarInput.setCustomValidity('champ vide') : this.searchBarInput.setCustomValidity('')
     let timeout = null
-    // const that = this
+    const that = this
 
     const callBackInput = (e) => {
       const regex = pRegex === '' ? /^[a-zA-Z àùéèç]+$/ : pRegex
@@ -95,10 +95,9 @@ export class InputSearch {
           e.target.setCustomValidity('')
         }, 600)
       }
-      // that.onInput && that.onInput(e)
-      // that.onInput = null
+      that.onInput && that.onInput(e)
     }
-    this.searchBarInput.addEventListener('keyup', callBackInput)
+    this.searchBarInput.addEventListener('input', callBackInput)
   }
 
   xMark () {
@@ -118,7 +117,11 @@ export class InputSearch {
 
     const clickXmark = (e) => {
       if (e) {
+        this.filterContent = document.querySelectorAll('li')
         this.searchBarInput.value = ''
+        this.filterContent.forEach(li => {
+          li.classList.remove('hidden')
+        })
         this.xMark()
       }
     }

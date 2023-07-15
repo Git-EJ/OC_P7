@@ -4,7 +4,7 @@
     @include flex_center;
     justify-content: space-between;
     margin-bottom: 1em;  
-    padding: 0 5%;
+    padding: 0 $padding-margin-RL_for_select-cards ;
     background: $tertiary-color;
   }
   
@@ -16,7 +16,7 @@
   }
 
   &_container > :nth-child(3n + 2) {  // 2nd element + 3 + 3 + 3 etc...
-    margin: 0 5%;
+    margin: 0 $padding-margin-RL_for_select-cards ;
   }
 
   &_container > :nth-child(6n + 4),

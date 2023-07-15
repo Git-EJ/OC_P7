@@ -1,5 +1,114 @@
-.cards_wrapper {
-  width: 100%;
-  height: 300px;
-  background-color: brown;
+.cards {
+
+  &_wrapper {
+    width: 100%; 
+    height:auto;
+    display: grid;
+    grid-template-columns: auto auto auto ;
+    gap: 4em 6%;
+    padding: 1em $padding-margin-RL_for_select-cards  ;
+    background-color: $tertiary-color;
+    cursor: default
+  }
+}
+
+.card { //[TODO] responsive design + ingredients_title margin-top
+  
+  &_container { 
+    width: 100%;
+    height: 730px; 
+    // height:fit-content; //[DEV]
+    border-radius: 3%;
+    background: #ffffff;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    filter: drop-shadow(1em 1em 1em rgba(0, 0, 0, 0.123));
+  }
+  
+  &_img_container {
+    width:100%;
+    height: 35%;
+  }
+  
+  &_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &_content {
+
+    &_container {
+      width:100%;
+      height:65%;
+      padding: 1em 7%;
+      text-align: justify;
+    }
+
+    &_title {
+      height:15%; 
+      font-family: 'Anton', sans-serif;
+      font-size:1.2em;
+    }
+
+    &_description_title {
+      @include flex_center;
+      margin-top: 0.5em;
+      justify-content: flex-start;
+      color: $card-content-light;
+    }
+
+    &_description {
+      margin: 1em 0 1.5em 0;
+      height:17%;
+      font-size: 0.9em;
+      overflow: hidden;
+    }
+
+    &_ingredients {
+      
+      &_title {
+        color : $card-content-light;
+      }
+      
+      &_container {
+        display: grid;
+        grid-template-columns: 45% 45% ;
+        gap: 2em 10%;
+        height:45%;
+        width: 100%;
+        margin-top: 1em;
+        // background: red;;
+      }
+    }
+
+    &_ingredient {
+
+      &_container {
+        @include flex_center_column;
+        align-items: flex-start;
+        width:100%;
+        height:fit-content;
+        // background: lime;
+      }
+
+      &_name {
+        font-size: 0.9em;
+      }
+
+      &_quantity_container {
+        @include flex_center_row;
+        justify-content: flex-start;
+        width:100%;
+        height:fit-content;
+        // background: pink;
+      }
+
+      &_quantity,
+      &_unit {
+        font-size: 0.8em;
+        color: $quaternary-color;
+      }
+    }
+  }
 }

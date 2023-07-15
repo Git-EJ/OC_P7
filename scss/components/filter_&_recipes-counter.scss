@@ -1,8 +1,10 @@
-.filters { //btn + filter list(.filter)
+.filters {
+
+    //btn + filter list(.filter)
     &_recipes-counter_wrapper {
         display: flex;
         justify-content: space-between;
-        padding: 1em 5%;
+        padding: 1em $padding-margin-RL_for_select-cards ;
         background: $tertiary-color;
     }
 
@@ -11,25 +13,25 @@
         justify-content: flex-start;
         align-items: flex-start;
         width: 55%;
-    }  
+    }
 }
 
 
 .btn {
-    &FilterWrapper {
+    &_filter_wrapper {
         @include flex_center_column;
         align-items: flex-start;
-        width:30%;
+        width: 30%;
         border-radius: 5px;
         background: #ffffff;
         font-family: 'roboto', sans-serif;
 
         &:nth-child(2) {
-            margin: $btn-2-filter-wrapper_margin;
+            margin: 0 $padding-margin-RL_for_select-cards;
         }
     }
 
-    &FilterContainer{
+    &_filter_container {
         @include flex_center_row_jc_space-between;
         width: 100%;
         font-size: $btn-filter_font-size;
@@ -37,16 +39,16 @@
 
     }
 
-    &FilterText {
+    &_filter_ext {
         @include flex_center_column;
         white-space: nowrap;
-        overflow: hidden; 
+        overflow: hidden;
         text-overflow: ellipsis;
         cursor: default;
     }
-
-    &FilterDropdown {
-        cursor:pointer;
+    
+    &_filter_dropdown {
+        cursor: pointer;
     }
 }
 
@@ -55,17 +57,17 @@
     &_container {
         display: none;
         width: 100%;
-        height:25vh;
+        height: 25vh;
         overflow: auto;
         background: #ffffff;
     }
-    
+
     &_content {
         font-size: clamp(0.6em, 1vw, 1.1em);
         padding: 0.2em 0.2em 0.2em 0;
         padding-left: $btn-filter_padding;
         color: $filter-content;
-        cursor:default;
+        cursor: default;
         background: #ffffff;
 
         &:hover {
@@ -79,19 +81,20 @@
         
         &_container {
             @include flex_center_row;
-            width:90%;
+            position: sticky;
+            top: 0;
+            width: 90%;
             min-height: 10px;
             border: 1px solid $tertiary-color;
             border-radius: 2px;
             margin: 0 auto 0.5em auto;
-            
-            
+            background: #ffffff
         }
-        
+
         &_input {
             @include flex_center;
-            width:100%;
-            height:100%;
+            width: 100%;
+            height: fit-content;
             font-family: 'Roboto', sans-serif;
             font-weight: 200;
             padding: 0 0.5em;
@@ -100,7 +103,7 @@
         
         &_icon_container {
             @include flex_center;
-            height:100%;
+            height: 100%;
             padding: 5%;
             background: #ffffff;
         }
@@ -113,13 +116,13 @@
             border-radius: 5px;
             font-size: clamp(0.8em, 1vw, 1em);
             color: $tertiary-color;
-            cursor:pointer;
+            cursor: pointer;
         }
         
         &_xmark_container {
             @include flex_center;
             width: fit-content;
-            height:100%;
+            height: 100%;
             padding-right: 2%;
             background: $search-bar-background-color;
         }
@@ -130,16 +133,16 @@
             font-size: 0.8em;
         }
     }
-} 
+}
 
 .recipes-counter {
     &_wrapper {
         @include flex_center_row_jc_space-between;
         align-items: flex-start;
         font-size: $reciper-counter_font-size;
-        padding:calc($reciper-counter_font-size - $btn-filter_padding) 0;
+        padding: calc($reciper-counter_font-size - $btn-filter_padding) 0;
     }
-
+    
     &_number {
         width: fit-content;
     }
@@ -166,10 +169,10 @@
 
 
 //////////////////////////////////////////////////////////////////////////
-        ///////////////// MEDIA QUERIES /////////////////
+///////////////// MEDIA QUERIES /////////////////
 /////////////////////////////////////////////////////////////////////////
 @media only screen and (max-width: 900px) {
-    
+
     .filters_wrapper {
         width: 75%;
     }
@@ -180,6 +183,7 @@
             &_input {
                 padding: 0 0.2em;
             }
+
             &_xmark_icon {
                 font-size: 0.6em;
             }
@@ -188,7 +192,7 @@
 }
 
 @media only screen and (max-width: 450px) {
-    
+
     .filters_recipes-counter_wrapper {
         padding: 1em 2%;
     }
