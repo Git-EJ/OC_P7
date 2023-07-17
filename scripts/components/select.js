@@ -142,25 +142,14 @@ export class Select {
       btnElementFilterDD.classList.toggle('fa-chevron-down', !isDisplay)
     })
 
-    // [TODO]
     // close when click outside the filters area
     this.body.addEventListener('click', (e) => {
-      this.tags = document.querySelector('.tags_wrapper')
-      this.tag = document.querySelector('.tag_container')
-      this.close = document.querySelector('.tag_xmark')
-      // console.log(e.target)
-      if (!this.selectContainer.contains(e.target) && (this.tag && !this.tags.contains(e.target))) {
-        // console.log('1')
+      this.tags = document.querySelector('.tags_container')
+      if (!this.selectContainer.contains(e.target) && !this.tags.contains(e.target)) {
         filterContainerElement.style.display = 'none'
         btnElementFilterDD.classList.add('fa-chevron-down')
         btnElementFilterDD.classList.remove('fa-chevron-up')
         isDisplay = false
-      // } else if (!this.selectContainer.contains(e.target)) {
-      //   console.log('2')
-      //   filterContainerElement.style.display = 'none'
-      //   btnElementFilterDD.classList.add('fa-chevron-down')
-      //   btnElementFilterDD.classList.remove('fa-chevron-up')
-      //   isDisplay = false
       }
     })
   }

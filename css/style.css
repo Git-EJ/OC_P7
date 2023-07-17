@@ -322,6 +322,7 @@ body ::-webkit-scrollbar {
   cursor: default;
 }
 .btn_filter_dropdown {
+  font-size: clamp(0.7em, 1.1vw, 1.3em);
   cursor: pointer;
 }
 
@@ -516,7 +517,7 @@ body ::-webkit-scrollbar {
 }
 .card_content_description {
   margin: 1em 0 1.5em 0;
-  height: 17%;
+  height: 16%;
   font-size: 0.9em;
   overflow: hidden;
 }
@@ -528,7 +529,6 @@ body ::-webkit-scrollbar {
   display: grid;
   grid-template-columns: 45% 45%;
   gap: 1em 10%;
-  height: 35%;
   width: 100%;
   margin-top: 1em;
 }

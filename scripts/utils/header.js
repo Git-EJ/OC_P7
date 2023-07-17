@@ -57,6 +57,6 @@ export class Header {
 
   buildSearchBar () {
     this.placeholderContent = 'Rechercher une recette, un ingrédient,...'
-    this.searchBar = new InputSearch('header', this.headerWrapper, this.placeholderContent, 'submit', 100, this.onInput)
+    this.searchBar = new InputSearch('header', this.headerWrapper, this.placeholderContent, 'button', 100, this.onInput)
   }
 }
