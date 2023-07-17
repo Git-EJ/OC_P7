@@ -8,11 +8,11 @@ export const header = new Header()
 
 export const select = new Select()
 
-export const recipesCounter = new RecipesCounter()
-
 export const tags = new Tags()
 
 export const cards = new Cards()
+
+export const recipesCounter = new RecipesCounter()
 
 // header.searchBar.onInput = (e) => {
 //   console.log(e.target.value)

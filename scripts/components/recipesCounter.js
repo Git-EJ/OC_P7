@@ -6,12 +6,13 @@ export class RecipesCounter {
 
   extractElements () {
     this.recipesCounterContainer = document.querySelector('.recipes-counter_wrapper')
+    this.cardContainer = document.querySelectorAll('.card_container')
   }
 
   buildElements () {
     this.recipesCounterNumberContent = document.createElement('span')
     this.recipesCounterNumberContent.classList.add('recipes-counter_number')
-    this.recipesCounterNumberContent.textContent = 'XXX'
+    this.cardCounter()
 
     this.recipesCounterTextContent = document.createElement('span')
     this.recipesCounterTextContent.classList.add('recipes-counter_text')
@@ -21,10 +22,7 @@ export class RecipesCounter {
     this.recipesCounterContainer.appendChild(this.recipesCounterTextContent)
   }
 
-  updateCount () {
-    // [TODO]
-    // count recipes
-    // update recipes count
-    this.recipesCounterNumberContent.textContent = '12'
+  cardCounter () {
+    this.recipesCounterNumberContent.textContent = this.cardContainer.length
   }
 }

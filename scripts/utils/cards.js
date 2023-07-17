@@ -1,5 +1,5 @@
 import { recipes } from '../../data/recipes.js'
-import { getAllDescription, getAllId, getAllImage, getAllIngredients, getAllName } from '../api/api.js'
+import { getAllDescription, getAllId, getAllImage, getAllIngredients, getAllName, getAllTime } from '../api/api.js'
 import { Card } from '../components/card.js'
 
 export class Cards {
@@ -17,11 +17,12 @@ export class Cards {
     this.allImage = getAllImage(recipes)
     this.allName = getAllName(recipes)
     this.allDescriptions = getAllDescription(recipes)
+    this.allTime = getAllTime(recipes)
     this.allIngredients = getAllIngredients(recipes)
     this.displayCard()
   }
 
   displayCard () {
-    this.card = new Card(recipes, this.cardsWrapper, this.allId, this.allImage, this.allName, this.allDescriptions, this.allIngredients)
+    this.card = new Card(recipes, this.cardsWrapper, this.allId, this.allImage, this.allName, this.allDescriptions, this.allTime, this.allIngredients)
   }
 }

@@ -3,7 +3,6 @@
   &_wrapper {
     @include flex_center;
     justify-content: space-between;
-    margin-bottom: 1em;  
     padding: 0 $padding-margin-RL_for_select-cards ;
     background: $tertiary-color;
   }
@@ -34,8 +33,8 @@
     @include flex_center_row_jc_space-between;
     width:30%;
     padding : $btn-filter_padding;
-    background-color: $primary-color;
     border-radius: 5px;
+    margin-bottom: 2emv ;
   }
 
   &_text {
@@ -50,6 +49,19 @@
   &_xmark {
     font-size: $btn-filter_font-size;
     cursor:pointer;
+  }
+
+  &_ingredient {
+    background: $filter-ingredients-color;
+  }
+
+  &_kitchen-appliances {
+    background: $filter-kitchen-appliances-color;
+  }
+
+  &_cooking-tools {
+    background: $filter-cooking-tools-color;
+
   }
 }
 

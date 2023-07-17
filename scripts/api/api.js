@@ -67,6 +67,15 @@ export function getAllDescription (recipes) {
 }
 // console.log(getAllDescription(recipes))
 
+export function getAllTime (recipes) {
+  const set = new Set()
+  recipes.forEach(re => {
+    set.add(re.time)
+  })
+  return [...set]
+}
+// console.log(getAllTime(recipes))
+
 export function getAllIngredients (recipes) {
   const set = new Set()
   recipes.forEach(re => {

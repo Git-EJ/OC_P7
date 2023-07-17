@@ -308,7 +308,7 @@ body ::-webkit-scrollbar {
   align-items: center;
   flex-direction: row;
   width: 100%;
-  font-size: clamp(0.6em, 1.1vw, 1.3em);
+  font-size: clamp(0.7em, 1.1vw, 1.3em);
   padding: clamp(0.5em, 1.2vw, 1.4em);
 }
 .btn_filter_ext {
@@ -333,7 +333,7 @@ body ::-webkit-scrollbar {
   background: #ffffff;
 }
 .filter_content {
-  font-size: clamp(0.6em, 1vw, 1.1em);
+  font-size: clamp(0.7em, 1vw, 1.1em);
   padding: 0.2em 0.2em 0.2em 0;
   padding-left: clamp(0.5em, 1.2vw, 1.4em);
   color: #757575;
@@ -341,9 +341,17 @@ body ::-webkit-scrollbar {
   background: #ffffff;
 }
 .filter_content:hover {
-  background: #FFD15B;
   padding-left: calc(clamp(0.5em, 1.2vw, 1.4em) + 7%);
   transform: scale(1.2);
+}
+.filter_ingredients:hover {
+  background: #FFD15B;
+}
+.filter_kitchen-appliances:hover {
+  background: rgba(240, 116, 7, 0.8156862745);
+}
+.filter_cooking-tools:hover {
+  background: rgba(113, 161, 1, 0.6784313725);
 }
 .filter_search-bar_container {
   display: flex;
@@ -407,22 +415,6 @@ body ::-webkit-scrollbar {
   font-size: 0.8em;
 }
 
-.recipes-counter_wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  align-items: flex-start;
-  font-size: clamp(0.7em, 1.8vw, 1.7em);
-  padding: calc(clamp(0.7em, 1.8vw, 1.7em) - clamp(0.5em, 1.2vw, 1.4em)) 0;
-}
-.recipes-counter_number {
-  width: fit-content;
-}
-.recipes-counter_text {
-  padding-left: 0.3em;
-}
-
 @media only screen and (max-width: 900px) {
   .filters_wrapper {
     width: 75%;
@@ -442,6 +434,22 @@ body ::-webkit-scrollbar {
     width: 75%;
   }
 }
+.recipes-counter_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
+  font-size: clamp(0.8em, 1.8vw, 1.7em);
+  padding: calc(clamp(0.8em, 1.8vw, 1.7em) - clamp(0.5em, 1.2vw, 1.4em)) 0;
+}
+.recipes-counter_number {
+  width: fit-content;
+}
+.recipes-counter_text {
+  padding-left: 0.3em;
+}
+
 .cards_wrapper {
   width: 100%;
   height: auto;
@@ -465,11 +473,26 @@ body ::-webkit-scrollbar {
 .card_img_container {
   width: 100%;
   height: 35%;
+  position: relative;
 }
 .card_img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.card_time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: fit-content;
+  position: absolute;
+  left: 78%;
+  top: 12%;
+  padding: 1.5% 4%;
+  border-radius: 50px;
+  background: #FFD15B;
+  font-size: 0.7em;
 }
 .card_content_container {
   width: 100%;
@@ -488,6 +511,7 @@ body ::-webkit-scrollbar {
   align-items: center;
   margin-top: 0.5em;
   justify-content: flex-start;
+  font-size: 0.9em;
   color: #757575;
 }
 .card_content_description {
@@ -497,13 +521,14 @@ body ::-webkit-scrollbar {
   overflow: hidden;
 }
 .card_content_ingredients_title {
+  font-size: 0.9em;
   color: #757575;
 }
 .card_content_ingredients_container {
   display: grid;
   grid-template-columns: 45% 45%;
-  gap: 2em 10%;
-  height: 45%;
+  gap: 1em 10%;
+  height: 35%;
   width: 100%;
   margin-top: 1em;
 }
@@ -513,11 +538,12 @@ body ::-webkit-scrollbar {
   align-items: center;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-start;
   width: 100%;
-  height: fit-content;
+  height: 100%;
 }
 .card_content_ingredient_name {
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 .card_content_ingredient_quantity_container {
   display: flex;
@@ -531,14 +557,24 @@ body ::-webkit-scrollbar {
 .card_content_ingredient_quantity, .card_content_ingredient_unit {
   font-size: 0.8em;
   color: #C6C6C6;
+  padding-top: 0.1em;
 }
 
+@media only screen and (max-width: 1000px) {
+  .cards_wrapper {
+    grid-template-columns: auto auto;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .cards_wrapper {
+    grid-template-columns: auto;
+  }
+}
 .tags_wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1em;
   padding: 0 5%;
   background: #EDEDED;
 }
@@ -563,20 +599,29 @@ body ::-webkit-scrollbar {
   flex-direction: row;
   width: 30%;
   padding: clamp(0.5em, 1.2vw, 1.4em);
-  background-color: #FFD15B;
   border-radius: 5px;
+  margin-bottom: 2emv;
 }
 .tag_text {
   font-family: "roboto", sans-serif;
-  font-size: clamp(0.6em, 1.1vw, 1.3em);
+  font-size: clamp(0.7em, 1.1vw, 1.3em);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: default;
 }
 .tag_xmark {
-  font-size: clamp(0.6em, 1.1vw, 1.3em);
+  font-size: clamp(0.7em, 1.1vw, 1.3em);
   cursor: pointer;
+}
+.tag_ingredient {
+  background: #FFD15B;
+}
+.tag_kitchen-appliances {
+  background: rgba(240, 116, 7, 0.8156862745);
+}
+.tag_cooking-tools {
+  background: rgba(113, 161, 1, 0.6784313725);
 }
 
 @media only screen and (max-width: 900px) {

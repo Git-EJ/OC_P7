@@ -1,0 +1,18 @@
+// filters_recipes-counter_wrapper in filter/scss
+
+.recipes-counter {
+  &_wrapper {
+      @include flex_center_row_jc_space-between;
+      align-items: flex-start;
+      font-size: $reciper-counter_font-size;
+      padding: calc($reciper-counter_font-size - $btn-filter_padding) 0;
+  }
+  
+  &_number {
+      width: fit-content;
+  }
+
+  &_text {
+      padding-left: 0.3em;
+  }
+}

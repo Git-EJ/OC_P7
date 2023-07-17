@@ -1,20 +1,22 @@
 /**
  * @param {Array} recipes from data/recipes.js (array of objects)
- * @param {HTMLElement} wrapper for appendchild
- * @param {array} id array of id(number) for give a card container attribute id
+ * @param {HTMLElement} wrapper for appendchild card container
+ * @param {Array} id from data/recipes.js (array of recipe id 'number' for give a card container attribute id)
  * @param {Array} img from data/recipes.js (array of recipe image name 'string')
  * @param {Array} title from data/recipes.js (array of recipe name 'string')
  * @param {Array} description from data/recipes.js (array of recipe description 'string')
+ * @param {Array} time from data/recipes.js (array of recipe time 'number')
  * @param {Array} ingredients from data/recipes.js (array of recipe ingredients 'object')
  */
 export class Card {
-  constructor (recipes, wrapper, id, img, name, description, ingredients) {
+  constructor (recipes, wrapper, id, img, name, description, time, ingredients) {
     this.recipes = recipes
     this.wrapper = wrapper
     this.id = id
     this.image = img
     this.name = name
     this.description = description
+    this.time = time
     this.ingredients = ingredients
     this.buildElements()
   }
@@ -31,11 +33,12 @@ export class Card {
       this.contentIngredientsContainer = document.createElement('div')
       this.contentIngredientsContainer.classList.add('card_content_ingredients_container')
 
-      this.displayImage(this.recipes[i].image)
+      this.displayImage(this.recipes[i].image, this.recipes[i].name)
+      this.displayTime(this.time[i])
+      // console.log([i], this.time[i])
       this.displayTitle(this.name[i])
       this.displayDescription(this.description[i])
       this.displayIngredient(this.recipes[i].ingredients)
-      // this.displayQuantity(this.recipes[i].ingredients)
 
       this.contentContainer.appendChild(this.contentIngredientsContainer)
       this.cardContainer.appendChild(this.contentContainer)
@@ -43,17 +46,24 @@ export class Card {
     }
   }
 
-  displayImage (image) {
+  displayImage (image, name) {
     this.imgContainer = document.createElement('div')
     this.imgContainer.classList.add('card_img_container')
 
     this.img = document.createElement('img')
     this.img.classList.add('card_img')
-    this.img.setAttribute('alt', 'XXX')
-    this.img.setAttribute('src', `../../assets/dishes/${image}`)
+    this.img.setAttribute('alt', `recipe: ${name}`)
+    this.img.setAttribute('src', `././assets/dishes/${image}`)
 
     this.imgContainer.appendChild(this.img)
     this.cardContainer.appendChild(this.imgContainer)
+  }
+
+  displayTime (time) {
+    this.timeContainer = document.createElement('span')
+    this.timeContainer.classList.add('card_time')
+    this.timeContainer.textContent = `${time}min`
+    this.imgContainer.appendChild(this.timeContainer)
   }
 
   displayTitle (name) {
@@ -94,9 +104,9 @@ export class Card {
       this.contentIngredientContainer.appendChild(this.contentIngredientName)
       this.contentIngredientsContainer.appendChild(this.contentIngredientContainer)
 
-      this.displayQuantity(ing)
-
       this.contentContainer.appendChild(this.contentIngredientsTitle)
+
+      this.displayQuantity(ing)
     })
   }
 
@@ -120,13 +130,11 @@ export class Card {
 
     const unit = uni.unit
     if (unit) {
-      console.log(unit)
       if (unit === 'grammes' || unit === 'gramme' || unit === 'Grammes' || unit === 'gramme') {
         this.contentIngredientUnit.textContent = unit.charAt(0).toLowerCase()
       } else {
         this.contentIngredientUnit.textContent = unit.toLowerCase()
       }
-
       this.contentQuantityContainer.appendChild(this.contentIngredientUnit)
     }
   }

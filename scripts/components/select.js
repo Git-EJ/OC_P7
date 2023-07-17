@@ -66,27 +66,30 @@ export class Select {
       {
         getFunction: getAllIngredient,
         id: 'filterContainerIngredients',
+        class: 'filter_ingredients',
         wrapper: 'btnIngredientsFilterWrapper'
       },
       {
         getFunction: getAllKitchenAppliance,
         id: 'filterContainerKitchenAppliances',
+        class: 'filter_kitchen-appliances',
         wrapper: 'btnKitchenAppliancesFilterWrapper'
       },
       {
         getFunction: getAllCookingTools,
         id: 'filterContainerCookingTools',
+        class: 'filter_cooking-tools',
         wrapper: 'btnCookingToolsFilterWrapper'
       }
     ]
     data.forEach(d => {
       const elements = d.getFunction(recipes)
-      const ul = this.buildFilterElementsList(elements, d.id)
+      const ul = this.buildFilterElementsList(elements, d.id, d.class)
       document.getElementById(d.wrapper).appendChild(ul)
     })
   }
 
-  buildFilterElementsList (elements, id) {
+  buildFilterElementsList (elements, id, contentClass) {
     const ul = document.createElement('ul')
     ul.classList.add('filter_container')
     ul.id = id
@@ -105,7 +108,7 @@ export class Select {
 
     elements && elements.forEach(el => {
       this.btnFilterElement = document.createElement('li')
-      this.btnFilterElement.classList.add('filter_content')
+      this.btnFilterElement.classList.add('filter_content', `${contentClass}`)
       this.btnFilterElement.textContent = el
       ul.appendChild(this.btnFilterElement)
     })

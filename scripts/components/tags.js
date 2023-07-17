@@ -14,6 +14,9 @@ export class Tags {
   buildTagsContainer () {
     this.tagsContainer = document.createElement('div')
     this.tagsContainer.classList.add('tags_container')
+    this.filterIngredients = document.querySelectorAll('.filter_ingredients')
+    this.filterKitchenAplliances = document.querySelectorAll('.filter_kitchen-appliances')
+    this.filterCookingTools = document.querySelectorAll('.filter_cooking-tools')
   }
 
   /**
@@ -52,6 +55,25 @@ export class Tags {
 
         if (!tagDisplay) {
           this.buildTags(li.textContent)
+
+          this.filterIngredients.forEach(fi => { // for background color tag
+            if (li === fi) {
+              this.tagContainer.classList.add('tag_ingredient')
+            }
+          })
+
+          this.filterKitchenAplliances.forEach(fka => { // for background color tag
+            if (li === fka) {
+              this.tagContainer.classList.add('tag_kitchen-appliances')
+            }
+          })
+
+          this.filterCookingTools.forEach(fi => { // for background color tag
+            if (li === fi) {
+              this.tagContainer.classList.add('tag_cooking-tools')
+            }
+          })
+
           this.closeTag()
         }
       })

@@ -63,7 +63,7 @@
     }
 
     &_content {
-        font-size: clamp(0.6em, 1vw, 1.1em);
+        font-size: clamp(0.7em, 1vw, 1.1em);
         padding: 0.2em 0.2em 0.2em 0;
         padding-left: $btn-filter_padding;
         color: $filter-content;
@@ -71,10 +71,21 @@
         background: #ffffff;
 
         &:hover {
-            background: $primary-color;
             padding-left: calc($btn-filter_padding + 7%);
             transform: scale(1.2)
         }
+    }
+
+    &_ingredients:hover {
+        background: $filter-ingredients-color;
+    }
+
+    &_kitchen-appliances:hover {
+        background: $filter-kitchen-appliances-color;
+    }
+
+    &_cooking-tools:hover {
+        background: $filter-cooking-tools-color;
     }
 
     &_search-bar {
@@ -135,35 +146,7 @@
     }
 }
 
-.recipes-counter {
-    &_wrapper {
-        @include flex_center_row_jc_space-between;
-        align-items: flex-start;
-        font-size: $reciper-counter_font-size;
-        padding: calc($reciper-counter_font-size - $btn-filter_padding) 0;
-    }
-    
-    &_number {
-        width: fit-content;
-    }
 
-    &_text {
-        padding-left: 0.3em;
-    }
-}
-
-//// START FOR SELECT
-// #selectIngredients,
-// #selectKitchenAplliances,
-// #selectCookingTools {
-//     width: 28%;
-//     padding: clamp( 0.5em, 1.2vw, 1.4em);
-//     border-radius: 5px;
-//     white-space: nowrap;
-//     overflow: hidden; 
-//     text-overflow: ellipsis;
-// }
-//// END FOR SELECT
 
 
 
