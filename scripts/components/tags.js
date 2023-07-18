@@ -1,5 +1,8 @@
+import { cards, recipesCounter } from '../index.js'
+
 export class Tags {
   constructor () {
+    this.selectedTags = null
     this.extractElements()
     this.buildTagsContainer()
     this.tagDisplay()
@@ -29,23 +32,24 @@ export class Tags {
     tagContainer.classList.add('tag_container')
     tagContainer.id = `tag_container_${liTextContent}`
 
-    this.tagsText = document.createElement('span')
-    this.tagsText.classList.add('tag_text')
-    this.tagsText.textContent = liTextContent
+    const tagsText = document.createElement('span')
+    tagsText.classList.add('tag_text')
+    tagsText.textContent = liTextContent
 
-    this.tagsXmark = document.createElement('em')
-    this.tagsXmark.classList.add('fa-solid', 'fa-xmark', 'tag_xmark')
-    this.tagsXmark.id = `tag_xmark_${liTextContent}`
+    const tagsXmark = document.createElement('em')
+    tagsXmark.classList.add('fa-solid', 'fa-xmark', 'tag_xmark')
+    tagsXmark.id = `tag_xmark_${liTextContent}`
 
-    tagContainer.appendChild(this.tagsText)
-    tagContainer.appendChild(this.tagsXmark)
+    tagContainer.appendChild(tagsText)
+    tagContainer.appendChild(tagsXmark)
     this.tagsContainer.appendChild(tagContainer)
     return tagContainer
   }
 
   tagDisplay () {
     this.filterContent.forEach(li => {
-      li.addEventListener('click', () => {
+      li.addEventListener('click', (e) => {
+        // console.log(e.target.textContent)
         let tagDisplay = false
 
         const tags = document.querySelectorAll('.tag_container')
@@ -61,21 +65,23 @@ export class Tags {
           this.filterIngredients.forEach(fi => { // for background color tag
             if (li === fi) {
               thisTag.classList.add('tag_ingredient')
+              this.selectedTags && this.selectedTags(e)
             }
           })
 
           this.filterKitchenAplliances.forEach(fka => { // for background color tag
             if (li === fka) {
               thisTag.classList.add('tag_kitchen-appliances')
+              this.selectedTags && this.selectedTags(e)
             }
           })
 
           this.filterCookingTools.forEach(fi => { // for background color tag
             if (li === fi) {
               thisTag.classList.add('tag_cooking-tools')
+              this.selectedTags && this.selectedTags(e)
             }
           })
-
           this.closeTag()
         }
       })
@@ -89,6 +95,8 @@ export class Tags {
       const xMarkContainer = e.target
       const tagContainer = xMarkContainer.parentNode
       tagContainer.remove()
+      cards.cards.forEach(card => card.show())
+      recipesCounter.cardCounter()
       e.stopPropagation()
     }
     this.close.forEach(el => {

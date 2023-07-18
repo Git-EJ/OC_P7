@@ -23,7 +23,7 @@ export class RecipesCounter {
   }
 
   cardCounter () {
-    this.cardContainer = document.querySelectorAll('.card_container:not(.hidden)')
+    this.cardContainer = document.querySelectorAll('.card_container:not(.hidden')
     this.recipesCounterNumberContent.textContent = this.cardContainer.length
   }
 }

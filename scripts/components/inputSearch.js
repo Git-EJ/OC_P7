@@ -1,3 +1,5 @@
+import { cards, recipesCounter } from '../index.js'
+
 /**
  * @param {String} Name for class an Id
  * @param {HTMLElement} wrapper for appendchild
@@ -57,7 +59,6 @@ export class InputSearch {
   init () {
     this.focus = (e) => {
       this.target = e.target.textContent = ''
-      console.log(this.target)
       this.searchBarInput.setAttribute('placeholder', this.target)
     }
 
@@ -83,6 +84,8 @@ export class InputSearch {
 
       if (e.target.value.trim() === '') {
         e.target.setCustomValidity('recherche vide')
+        cards.cards.forEach(card => card.show())
+        recipesCounter.cardCounter()
       } else if (e.target.value !== newValue) {
         e.target.value = newValue
       } else if (!regex.test(e.target.value)) {
@@ -91,7 +94,6 @@ export class InputSearch {
         clearTimeout(timeout)
         timeout = setTimeout(() => {
           e.target.value = newValue.trim()
-          console.log(e.target.value)
           e.target.setCustomValidity('')
         }, 600)
       }
@@ -122,6 +124,8 @@ export class InputSearch {
         this.filterContent.forEach(li => {
           li.classList.remove('hidden')
         })
+        cards.cards.forEach(card => card.show())
+        recipesCounter.cardCounter()
         this.xMark()
       }
     }
