@@ -16,7 +16,7 @@ export class Cards {
   }
 
   displayCard () {
-    this.cards = recipes.map(recipe => new Card(recipe))
+    this.cards = recipes.map(recipe => new Card(recipe, this.cardsWrapper))
     this.cards.forEach(card => this.cardsWrapper.appendChild(card.element))
   }
 }
