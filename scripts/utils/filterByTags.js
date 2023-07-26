@@ -1,4 +1,3 @@
-import { DOMObserver } from '../components/card.js'
 import { cards, recipesCounter } from '../index.js'
 
 export const tagsOnDisplay = []
@@ -10,15 +9,18 @@ export const tagsFilter = () => {
   })
   console.log(tagsOnDisplay)
 
-  const filteredCards = cards.cards.filter(card => {
-    return tagsOnDisplay.every(tag =>
-      card.appliance.toLowerCase().includes(tag) ||
+  if (tagsOnDisplay.length === 0) {
+    cards.cards.forEach(card => card.show())
+  } else {
+    const filteredCards = cards.cards.filter(card => {
+      return tagsOnDisplay.every(tag =>
+        card.appliance.toLowerCase().includes(tag) ||
         card.ustensils.some(ust => ust.toLowerCase().includes(tag)) ||
         card.ingredients.filter(ing => ing.ingredient.toLowerCase().includes(tag)).length > 0
-    )
-  })
-  cards.cards.forEach(card => card.hide())
-  filteredCards.forEach(card => card.show())
+      )
+    })
+    cards.cards.forEach(card => card.hide())
+    filteredCards.forEach(card => card.show())
+  }
   recipesCounter.cardCounter()
-  DOMObserver()
 }

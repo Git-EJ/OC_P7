@@ -1,11 +1,10 @@
 import { createElement, createImage } from '../utils/domElement.js'
 
 export class Card {
-  constructor (recipe, wrapper) {
+  constructor (recipe) {
     this.data = recipe
     this.element = this.buildElement()
     this.element.card = this
-    this.wrapper = wrapper
   }
 
   get id () {
@@ -109,34 +108,3 @@ export class Card {
     this.cardContainer.classList.remove('hidden')
   }
 }
-
-const cardsWrapper = document.querySelector('.cards_wrapper')
-const defaultColumnsStyle = cardsWrapper.style.gridTemplateColumns
-
-function cardContainerMutation () {
-  const containers = document.querySelectorAll('.card_container:not(.hidden)')
-  console.log('containers', containers)
-  const containerCount = containers.length
-  // Mettons à jour le style en fonction du nombre de containers
-  if (containerCount === 1) {
-    console.log('1', containerCount)
-    cardsWrapper.style.gridTemplateColumns = 'auto'
-  } else if (containerCount === 2) {
-    console.log('2', containerCount)
-    cardsWrapper.style.gridTemplateColumns = 'auto auto'
-  } else {
-    cardsWrapper.style.gridTemplateColumns = defaultColumnsStyle
-  }
-}
-
-export function DOMObserver () {
-  // Créez une nouvelle instance de MutationObserver en lui passant la fonction de rappel
-  const observer = new MutationObserver(cardContainerMutation)
-
-  // Observez les mutations de l'élément `cardsWrapper` et de ses descendants
-  observer.observe(cardsWrapper, { childList: true })
-
-  cardContainerMutation()
-}
-
-DOMObserver()

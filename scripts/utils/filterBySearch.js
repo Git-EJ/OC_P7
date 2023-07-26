@@ -1,5 +1,3 @@
-
-import { DOMObserver } from '../components/card.js'
 import { cards, recipesCounter } from '../index.js'
 
 export const searchFilter = (e) => {
@@ -15,5 +13,4 @@ export const searchFilter = (e) => {
   cards.cards.forEach(card => card.hide())
   filteredCards.forEach(card => card.show())
   recipesCounter.cardCounter()
-  DOMObserver()
 }
