@@ -1,4 +1,5 @@
 import { cards, recipesCounter } from '../index.js'
+import { tagsFilter, tagsOnDisplay } from '../utils/filterByTags.js'
 
 export class Tags {
   constructor () {
@@ -62,26 +63,19 @@ export class Tags {
         if (!tagDisplay) {
           const thisTag = this.buildTag(li.textContent)
 
-          this.filterIngredients.forEach(fi => { // for background color tag
-            if (li === fi) {
-              thisTag.classList.add('tag_ingredient')
-              this.selectedTags && this.selectedTags(e)
-            }
-          })
+          const filterElements = (elements, elementClass) => { // for background color tag
+            return elements.forEach(fi => {
+              if (li === fi) {
+                thisTag.classList.add(elementClass)
+                this.selectedTags && this.selectedTags(e)
+              }
+            })
+          }
 
-          this.filterKitchenAplliances.forEach(fka => { // for background color tag
-            if (li === fka) {
-              thisTag.classList.add('tag_kitchen-appliances')
-              this.selectedTags && this.selectedTags(e)
-            }
-          })
+          filterElements(this.filterIngredients, 'tag_ingredient')
+          filterElements(this.filterKitchenAplliances, 'tag_kitchen-appliances')
+          filterElements(this.filterCookingTools, 'tag_cooking-tools')
 
-          this.filterCookingTools.forEach(fi => { // for background color tag
-            if (li === fi) {
-              thisTag.classList.add('tag_cooking-tools')
-              this.selectedTags && this.selectedTags(e)
-            }
-          })
           this.closeTag()
         }
       })
@@ -94,11 +88,25 @@ export class Tags {
     const clickXmark = (e) => {
       const xMarkContainer = e.target
       const tagContainer = xMarkContainer.parentNode
+      const removedTag = tagContainer.textContent.toLowerCase()
+
       tagContainer.remove()
-      cards.cards.forEach(card => card.show())
-      recipesCounter.cardCounter()
+
+      const remainingTags = []
+      document.querySelectorAll('.tag_container').forEach(tag => {
+        const tagText = tag.textContent.toLowerCase()
+        if (tagText !== removedTag) {
+          remainingTags.push(tagText)
+        }
+      })
+
+      // Update tagsOnDisplay
+      tagsOnDisplay.length = 0
+      tagsOnDisplay.push(...remainingTags)
+      tagsFilter()
       e.stopPropagation()
     }
+
     this.close.forEach(el => {
       el.addEventListener('click', clickXmark)
     })

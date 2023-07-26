@@ -460,6 +460,7 @@ body ::-webkit-scrollbar {
   padding: 1em 5%;
   background-color: #EDEDED;
   cursor: default;
+  margin: 0 auto;
 }
 
 .card_container {
