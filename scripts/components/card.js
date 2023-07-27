@@ -110,15 +110,27 @@ export class Card {
 }
 
 const cardsWrapper = document.querySelector('.cards_wrapper')
-const defaultColumnsStyle = cardsWrapper.style.gridTemplateColumns
 
 function cardContainerMutation () {
   const containers = document.querySelectorAll('.card_container:not(.hidden)')
-  console.log('containers', containers)
+  const defaultColumnsStyle = cardsWrapper.style.gridTemplateColumns
   const containerCount = containers.length
+
   if (containerCount === 1) {
     console.log('1', containerCount)
-    cardsWrapper.style.gridTemplateColumns = 'auto'
+    const timeLabels = document.querySelectorAll('.card_time')
+
+    cardsWrapper.style.gridTemplateColumns = ''
+    cardsWrapper.style.display = 'flex'
+    cardsWrapper.style.justifyContent = 'center'
+    timeLabels.forEach(timeLabel => {
+      timeLabel.style.left = '84%'
+      timeLabel.style.top = '5%'
+    })
+
+    containers.forEach(container => {
+      container.style.width = '60%'
+    })
   } else if (containerCount === 2) {
     console.log('2', containerCount)
     cardsWrapper.style.gridTemplateColumns = 'auto auto'
