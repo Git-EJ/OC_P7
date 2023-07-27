@@ -108,3 +108,31 @@ export class Card {
     this.cardContainer.classList.remove('hidden')
   }
 }
+
+const cardsWrapper = document.querySelector('.cards_wrapper')
+const defaultColumnsStyle = cardsWrapper.style.gridTemplateColumns
+
+function cardContainerMutation () {
+  const containers = document.querySelectorAll('.card_container:not(.hidden)')
+  console.log('containers', containers)
+  const containerCount = containers.length
+  if (containerCount === 1) {
+    console.log('1', containerCount)
+    cardsWrapper.style.gridTemplateColumns = 'auto'
+  } else if (containerCount === 2) {
+    console.log('2', containerCount)
+    cardsWrapper.style.gridTemplateColumns = 'auto auto'
+  } else {
+    cardsWrapper.style.gridTemplateColumns = defaultColumnsStyle
+  }
+}
+
+export function DOMObserver () {
+  const observer = new MutationObserver(cardContainerMutation)
+
+  observer.observe(cardsWrapper, { childList: true })
+
+  cardContainerMutation()
+}
+
+DOMObserver()

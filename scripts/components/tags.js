@@ -1,4 +1,3 @@
-import { cards, recipesCounter } from '../index.js'
 import { tagsFilter, tagsOnDisplay } from '../utils/filterByTags.js'
 
 export class Tags {
