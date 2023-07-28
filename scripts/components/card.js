@@ -1,10 +1,11 @@
 import { createElement, createImage } from '../utils/domElement.js'
 
 export class Card {
-  constructor (recipe) {
+  constructor (recipe, cardsWrapper) {
     this.data = recipe
     this.element = this.buildElement()
     this.element.card = this
+    this.cardsWrapper = cardsWrapper
   }
 
   get id () {
@@ -110,16 +111,17 @@ export class Card {
 }
 
 const cardsWrapper = document.querySelector('.cards_wrapper')
+const defaultDisplayStyle = cardsWrapper.style.display
+const defaultGridTemplateColumnsStyle = cardsWrapper.style.gridTemplateColumns
 
-function cardContainerMutation () {
+const timeLabels = document.querySelectorAll('.card_time')
+
+export function cardContainerMutation () {
   const containers = document.querySelectorAll('.card_container:not(.hidden)')
-  const defaultColumnsStyle = cardsWrapper.style.gridTemplateColumns
   const containerCount = containers.length
 
   if (containerCount === 1) {
     console.log('1', containerCount)
-    const timeLabels = document.querySelectorAll('.card_time')
-
     cardsWrapper.style.gridTemplateColumns = ''
     cardsWrapper.style.display = 'flex'
     cardsWrapper.style.justifyContent = 'center'
@@ -135,7 +137,13 @@ function cardContainerMutation () {
     console.log('2', containerCount)
     cardsWrapper.style.gridTemplateColumns = 'auto auto'
   } else {
-    cardsWrapper.style.gridTemplateColumns = defaultColumnsStyle
+    cardsWrapper.style.display = defaultDisplayStyle
+    cardsWrapper.style.gridTemplateColumns = defaultGridTemplateColumnsStyle
+    cardsWrapper.style.justifyContent = ''
+    timeLabels.forEach(timeLabel => {
+      timeLabel.style.left = '78%'
+      timeLabel.style.top = '12%'
+    })
   }
 }
 
@@ -146,5 +154,3 @@ export function DOMObserver () {
 
   cardContainerMutation()
 }
-
-DOMObserver()

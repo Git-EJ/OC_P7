@@ -1,9 +1,8 @@
-import { DOMObserver } from '../components/card.js'
-import { cards, recipesCounter } from '../index.js'
+import { cards } from '../index.js'
 
-export const searchFilter = (e) => {
-  const search = e.target.value.toLowerCase()
-  if (search.length < 3) return
+export const searchFilter = (searchText) => {
+  const search = searchText.toLowerCase()
+  if (search.length < 3) return cards.cards
 
   const filteredCards = cards.cards.filter(card => {
     return card.name.toLowerCase().includes(search) ||
@@ -11,8 +10,5 @@ export const searchFilter = (e) => {
            card.ingredients.filter(ing => ing.ingredient.toLowerCase().includes(search)).length > 0
   })
 
-  cards.cards.forEach(card => card.hide())
-  filteredCards.forEach(card => card.show())
-  recipesCounter.cardCounter()
-  DOMObserver()
+  return filteredCards
 }

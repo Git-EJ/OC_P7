@@ -23,6 +23,10 @@ export class InputSearch {
     this.xMark()
   }
 
+  get value () {
+    return this.searchBarInput.value
+  }
+
   buildElements () {
     this.searchBarContainer = document.createElement('form')
     this.searchBarContainer.classList.add(`${this.name}_search-bar_container`)
@@ -74,32 +78,41 @@ export class InputSearch {
   }
 
   validity (pRegex = '') {
+    console.log('init input value', this.searchBarInput.value.trim())
     this.searchBarInput.value.trim() === '' ? this.searchBarInput.setCustomValidity('champ vide') : this.searchBarInput.setCustomValidity('')
     let timeout = null
     const that = this
+    let n = 0
 
     const callBackInput = (e) => {
-      const regex = pRegex === '' ? /^[a-zA-Z àùéèç]+$/ : pRegex
-      const newValue = e.target.value.replace('  ', ' ').toLowerCase() // s for any whitespace character ; g for global. All matches (don't return after first match)
+      console.log('click')
+      if (timeout) clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        console.log('call me !', n++)
+        const regex = pRegex === '' ? /^[a-zA-Z àùéèç]+$/ : pRegex
+        const newValue = e.target.value.replace('  ', ' ').toLowerCase() // s for any whitespace character ; g for global. All matches (don't return after first match)
+        if (e.target.value !== newValue) {
+          this.searchBarInput.value = newValue
+        }
 
-      if (e.target.value.trim() === '') {
-        e.target.setCustomValidity('recherche vide')
-        cards.cards.forEach(card => card.show())
-        recipesCounter.cardCounter()
-      } else if (e.target.value !== newValue) {
-        e.target.value = newValue
-      } else if (!regex.test(e.target.value)) {
-        e.target.setCustomValidity('Caractère(s) non autorisé(s)')
-      } else {
-        clearTimeout(timeout)
-        timeout = setTimeout(() => {
-          e.target.value = newValue.trim()
+        if (e.target.value.trim() === '') {
+          e.target.setCustomValidity('recherche vide')
+          cards.cards.forEach(card => card.show())
+          recipesCounter.cardCounter()
+        } else if (!regex.test(e.target.value)) {
+          e.target.setCustomValidity('Caractère(s) non autorisé(s)')
+        } else {
+          this.searchBarInput.value = newValue.trim()
           e.target.setCustomValidity('')
-        }, 600)
-      }
-      that.onInput && that.onInput(e)
+          that.onInput && that.onInput(e)
+        }
+      }, 1000)
     }
     this.searchBarInput.addEventListener('input', callBackInput)
+    this.searchBarContainer.onsubmit = (e) => {
+      e.preventDefault()
+      callBackInput({ target: this.searchBarInput })
+    }
   }
 
   xMark () {

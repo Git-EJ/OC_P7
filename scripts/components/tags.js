@@ -1,17 +1,10 @@
-import { tagsFilter, tagsOnDisplay } from '../utils/filterByTags.js'
-
 export class Tags {
   constructor () {
     this.selectedTags = null
-    this.extractElements()
+    this.tagsWrapper = document.querySelector('.tags_wrapper')
+    this.listWrapper = document.querySelector('.filters_wrapper')
     this.buildTagsContainer()
     this.tagDisplay()
-    this.closeTag()
-  }
-
-  extractElements () {
-    this.tagsWrapper = document.querySelector('.tags_wrapper')
-    this.filterContent = document.querySelectorAll('li')
   }
 
   buildTagsContainer () {
@@ -19,9 +12,23 @@ export class Tags {
     this.tagsContainer.classList.add('tags_container')
     this.tagsWrapper.appendChild(this.tagsContainer)
 
-    this.filterIngredients = document.querySelectorAll('.filter_ingredients')
-    this.filterKitchenAplliances = document.querySelectorAll('.filter_kitchen-appliances')
-    this.filterCookingTools = document.querySelectorAll('.filter_cooking-tools')
+    this.filterIngredients = this.listWrapper.querySelectorAll('.filter_ingredients')
+    this.filterKitchenAplliances = this.listWrapper.querySelectorAll('.filter_kitchen-appliances')
+    this.filterCookingTools = this.listWrapper.querySelectorAll('.filter_cooking-tools')
+    this.filterContent = [
+      {
+        tagClassName: 'tag_ingredient',
+        list: this.filterIngredients
+      },
+      {
+        tagClassName: 'tag_kitchen-appliances',
+        list: this.filterKitchenAplliances
+      },
+      {
+        tagClassName: 'tag_cooking-tools',
+        list: this.filterCookingTools
+      }
+    ]
   }
 
   /**
@@ -47,67 +54,33 @@ export class Tags {
   }
 
   tagDisplay () {
-    this.filterContent.forEach(li => {
-      li.addEventListener('click', (e) => {
-        // console.log(e.target.textContent)
-        let tagDisplay = false
+    this.filterContent.forEach(menu => {
+      const className = menu.tagClassName
+      menu.list.forEach(li => {
+        li.addEventListener('click', (e) => {
+          // console.log(e.target.textContent)
+          let tagDisplay = false
 
-        const tags = document.querySelectorAll('.tag_container')
-        tags.forEach(t => {
-          if (t.id === `tag_container_${li.textContent}`) {
-            tagDisplay = true
-          }
-        })
+          const tags = this.tagsWrapper.querySelectorAll('.tag_container')
+          tags.forEach(t => {
+            if (t.id === `tag_container_${li.textContent}`) {
+              tagDisplay = true
+            }
+          })
 
-        if (!tagDisplay) {
-          const thisTag = this.buildTag(li.textContent)
-
-          const filterElements = (elements, elementClass) => { // for background color tag
-            return elements.forEach(fi => {
-              if (li === fi) {
-                thisTag.classList.add(elementClass)
-                this.selectedTags && this.selectedTags(e)
-              }
+          if (!tagDisplay) {
+            const thisTag = this.buildTag(li.textContent)
+            thisTag.classList.add(className)
+            this.selectedTags && this.selectedTags()
+            const that = this
+            const xMark = thisTag.querySelector('.tag_xmark')
+            xMark.addEventListener('click', () => {
+              thisTag.remove()
+              that.selectedTags && that.selectedTags()
             })
           }
-
-          filterElements(this.filterIngredients, 'tag_ingredient')
-          filterElements(this.filterKitchenAplliances, 'tag_kitchen-appliances')
-          filterElements(this.filterCookingTools, 'tag_cooking-tools')
-
-          this.closeTag()
-        }
+        })
       })
-    })
-  }
-
-  closeTag () {
-    this.close = document.querySelectorAll('.tag_xmark')
-
-    const clickXmark = (e) => {
-      const xMarkContainer = e.target
-      const tagContainer = xMarkContainer.parentNode
-      const removedTag = tagContainer.textContent.toLowerCase()
-
-      tagContainer.remove()
-
-      const remainingTags = []
-      document.querySelectorAll('.tag_container').forEach(tag => {
-        const tagText = tag.textContent.toLowerCase()
-        if (tagText !== removedTag) {
-          remainingTags.push(tagText)
-        }
-      })
-
-      // Update tagsOnDisplay
-      tagsOnDisplay.length = 0
-      tagsOnDisplay.push(...remainingTags)
-      tagsFilter()
-      e.stopPropagation()
-    }
-
-    this.close.forEach(el => {
-      el.addEventListener('click', clickXmark)
     })
   }
 }

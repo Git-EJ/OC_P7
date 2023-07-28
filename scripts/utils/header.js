@@ -3,12 +3,8 @@ import { InputSearch } from '../components/inputSearch.js'
 export class Header {
   constructor (onInput) {
     this.onInput = onInput
-    this.extractElements()
-    this.buildElements()
-  }
-
-  extractElements () {
     this.headerWrapper = document.querySelector('.header_wrapper')
+    this.buildElements()
   }
 
   buildElements () {
