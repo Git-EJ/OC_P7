@@ -111,46 +111,22 @@ export class Card {
 }
 
 const cardsWrapper = document.querySelector('.cards_wrapper')
-const defaultDisplayStyle = cardsWrapper.style.display
-const defaultGridTemplateColumnsStyle = cardsWrapper.style.gridTemplateColumns
 
-const timeLabels = document.querySelectorAll('.card_time')
-
-export function cardContainerMutation () {
-  const containers = document.querySelectorAll('.card_container:not(.hidden)')
+export function cssByNumberOfCardContainer () {
+  const timeLabels = cardsWrapper.querySelectorAll('.card_time')
+  const containers = cardsWrapper.querySelectorAll('.card_container:not(.hidden)')
   const containerCount = containers.length
 
   if (containerCount === 1) {
-    console.log('1', containerCount)
-    cardsWrapper.style.gridTemplateColumns = ''
-    cardsWrapper.style.display = 'flex'
-    cardsWrapper.style.justifyContent = 'center'
-    timeLabels.forEach(timeLabel => {
-      timeLabel.style.left = '84%'
-      timeLabel.style.top = '5%'
-    })
-
-    containers.forEach(container => {
-      container.style.width = '60%'
-    })
+    cardsWrapper.classList.add('cards_wrapper_filter_one-card')
+    containers.forEach(container => { container.classList.add('card_container_filter_one-card') })
+    timeLabels.forEach(timeLabel => { timeLabel.classList.add('card_time_filter_one-card') })
   } else if (containerCount === 2) {
-    console.log('2', containerCount)
-    cardsWrapper.style.gridTemplateColumns = 'auto auto'
+    cardsWrapper.classList.add('cards_wrapper_filter_two-cards')
   } else {
-    cardsWrapper.style.display = defaultDisplayStyle
-    cardsWrapper.style.gridTemplateColumns = defaultGridTemplateColumnsStyle
-    cardsWrapper.style.justifyContent = ''
-    timeLabels.forEach(timeLabel => {
-      timeLabel.style.left = '78%'
-      timeLabel.style.top = '12%'
-    })
+    cardsWrapper.classList.remove('cards_wrapper_filter_one-card')
+    cardsWrapper.classList.remove('cards_wrapper_filter_two-cards')
+    containers.forEach(container => { container.classList.remove('card_container_filter_one-card') })
+    timeLabels.forEach(timeLabel => { timeLabel.classList.remove('card_time_filter_one-card') })
   }
-}
-
-export function DOMObserver () {
-  const observer = new MutationObserver(cardContainerMutation)
-
-  observer.observe(cardsWrapper, { childList: true })
-
-  cardContainerMutation()
 }

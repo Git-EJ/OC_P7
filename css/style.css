@@ -462,6 +462,14 @@ body ::-webkit-scrollbar {
   cursor: default;
   margin: 0 auto;
 }
+.cards_wrapper_filter_two-cards {
+  grid-template-columns: auto auto;
+}
+.cards_wrapper_filter_one-card {
+  display: flex;
+  justify-content: center;
+  grid-template-columns: none;
+}
 
 .card_container {
   width: 100%;
@@ -471,6 +479,9 @@ body ::-webkit-scrollbar {
   overflow: hidden;
   font-family: "Roboto", sans-serif;
   filter: drop-shadow(1em 1em 1em rgba(0, 0, 0, 0.123));
+}
+.card_container_filter_one-card {
+  width: 60%;
 }
 .card_img_container {
   width: 100%;
@@ -495,6 +506,10 @@ body ::-webkit-scrollbar {
   border-radius: 50px;
   background: #FFD15B;
   font-size: 0.7em;
+}
+.card_time_filter_one-card {
+  left: 84%;
+  top: 5%;
 }
 .card_content_container {
   width: 100%;
