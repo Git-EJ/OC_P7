@@ -112,7 +112,7 @@ export class Card {
 
 const cardsWrapper = document.querySelector('.cards_wrapper')
 
-export function cssByNumberOfCardContainer () {
+export function cssByNumberOfCard () {
   const timeLabels = cardsWrapper.querySelectorAll('.card_time')
   const containers = cardsWrapper.querySelectorAll('.card_container:not(.hidden)')
   const containerCount = containers.length

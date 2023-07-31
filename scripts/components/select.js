@@ -1,4 +1,4 @@
-import { getAllCookingTools, getAllIngredient, getAllKitchenAppliance } from '../api/api.js'
+import { getAllUstensils, getAllIngredient, getAllAppliance } from '../api/api.js'
 import { InputSearch } from './inputSearch.js'
 import { recipes } from '../../data/recipes.js'
 
@@ -25,16 +25,16 @@ export class Select {
         dropDownId: 'btnIngredientsFilterDD'
       },
       {
-        id: 'btnKitchenAppliancesFilter',
-        textId: 'btnKitchenAppliancesFilterText',
+        id: 'btnApplianceFilter',
+        textId: 'btnApplianceFilterText',
         textContent: 'Appareils',
-        dropDownId: 'btnKitchenAppliancesFilterDD'
+        dropDownId: 'btnApplianceFilterDD'
       },
       {
-        id: 'btnCookingToolsFilter',
-        textId: 'btnCookingToolsFilterText',
+        id: 'btnUstensilsFilter',
+        textId: 'btnUstensilsFilterText',
         textContent: 'Ustensiles',
-        dropDownId: 'btnCookingToolsFilterDD'
+        dropDownId: 'btnUstensilsFilterDD'
       }
     ].forEach(el => {
       this.btnFilterWrapper = document.createElement('div')
@@ -70,16 +70,16 @@ export class Select {
         wrapper: 'btnIngredientsFilterWrapper'
       },
       {
-        getFunction: getAllKitchenAppliance,
-        id: 'filterContainerKitchenAppliances',
-        class: 'filter_kitchen-appliances',
-        wrapper: 'btnKitchenAppliancesFilterWrapper'
+        getFunction: getAllAppliance,
+        id: 'filterContainerAppliance',
+        class: 'filter_appliance',
+        wrapper: 'btnApplianceFilterWrapper'
       },
       {
-        getFunction: getAllCookingTools,
-        id: 'filterContainerCookingTools',
-        class: 'filter_cooking-tools',
-        wrapper: 'btnCookingToolsFilterWrapper'
+        getFunction: getAllUstensils,
+        id: 'filterContainerUstensils',
+        class: 'filter_ustensils',
+        wrapper: 'btnUstensilsFilterWrapper'
       }
     ]
     data.forEach(d => {
@@ -122,8 +122,8 @@ export class Select {
   DDElements () {
     const data = [
       { id: 'Ingredients' },
-      { id: 'KitchenAppliances' },
-      { id: 'CookingTools' }
+      { id: 'Appliance' },
+      { id: 'Ustensils' }
     ]
     data.forEach(d => {
       this[`btn${d.id}FilterDD`] = document.getElementById(`btn${d.id}FilterDD`)

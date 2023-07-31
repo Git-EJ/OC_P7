@@ -348,10 +348,10 @@ body ::-webkit-scrollbar {
 .filter_ingredients:hover {
   background: #FFD15B;
 }
-.filter_kitchen-appliances:hover {
+.filter_appliance:hover {
   background: rgba(240, 116, 7, 0.8156862745);
 }
-.filter_cooking-tools:hover {
+.filter_ustensils:hover {
   background: rgba(113, 161, 1, 0.6784313725);
 }
 .filter_search-bar_container {
@@ -633,10 +633,10 @@ body ::-webkit-scrollbar {
 .tag_ingredient {
   background: #FFD15B;
 }
-.tag_kitchen-appliances {
+.tag_appliance {
   background: rgba(240, 116, 7, 0.8156862745);
 }
-.tag_cooking-tools {
+.tag_ustensils {
   background: rgba(113, 161, 1, 0.6784313725);
 }
 

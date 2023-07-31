@@ -1,5 +1,5 @@
 import { cards, header, recipesCounter } from '../index.js'
-import { cssByNumberOfCardContainer } from '../components/card.js'
+import { cssByNumberOfCard } from '../components/card.js'
 
 export const searchFilter = (searchText) => {
   const search = searchText.toLowerCase()
@@ -21,7 +21,6 @@ export const tagsFilter = (filtered) => {
   document.querySelectorAll('.tag_container').forEach(tag => {
     tagsOnDisplay.push(tag.textContent.toLowerCase())
   })
-  console.log(tagsOnDisplay)
 
   return filtered.filter(card => {
     return tagsOnDisplay.every(tag =>
@@ -40,9 +39,19 @@ export const filterFunction = () => {
 
   cards.cards.forEach(card => card.hide())
   result.forEach(card => card.show())
-
   recipesCounter.cardCounter()
-  cssByNumberOfCardContainer()
+  cssByNumberOfCard()
+
   // TODO reset li
   // TODO message de suggestion quand pas de recette
+
+  console.log('result', result)
+  result.forEach((res, i) => {
+    console.log([i], 'result-Ing', res.ingredients)
+    console.log([i], 'result-App', res.appliance)
+    console.log([i], 'result-Ust', res.ustensils)
+  })
 }
+// const filterIngredient = document.querySelectorAll('filter_ingredients')
+// const filterAppliance = document.querySelectorAll('filter_ingredients')
+// const filterUstensils = document.querySelectorAll('filter_ingredients')

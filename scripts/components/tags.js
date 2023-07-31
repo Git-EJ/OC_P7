@@ -13,20 +13,20 @@ export class Tags {
     this.tagsWrapper.appendChild(this.tagsContainer)
 
     this.filterIngredients = this.listWrapper.querySelectorAll('.filter_ingredients')
-    this.filterKitchenAplliances = this.listWrapper.querySelectorAll('.filter_kitchen-appliances')
-    this.filterCookingTools = this.listWrapper.querySelectorAll('.filter_cooking-tools')
+    this.filterAppliance = this.listWrapper.querySelectorAll('.filter_appliance')
+    this.filterUstensils = this.listWrapper.querySelectorAll('.filter_ustensils')
     this.filterContent = [
       {
         tagClassName: 'tag_ingredient',
         list: this.filterIngredients
       },
       {
-        tagClassName: 'tag_kitchen-appliances',
-        list: this.filterKitchenAplliances
+        tagClassName: 'tag_appliance',
+        list: this.filterAppliance
       },
       {
-        tagClassName: 'tag_cooking-tools',
-        list: this.filterCookingTools
+        tagClassName: 'tag_ustensils',
+        list: this.filterUstensils
       }
     ]
   }

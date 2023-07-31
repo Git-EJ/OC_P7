@@ -78,17 +78,17 @@ export class InputSearch {
   }
 
   validity (pRegex = '') {
-    console.log('init input value', this.searchBarInput.value.trim())
+    // console.log('init input value', this.searchBarInput.value.trim())
     this.searchBarInput.value.trim() === '' ? this.searchBarInput.setCustomValidity('champ vide') : this.searchBarInput.setCustomValidity('')
     let timeout = null
     const that = this
-    let n = 0
+    // let n = 0
 
     const callBackInput = (e) => {
-      console.log('click')
+      // console.log('click')
       if (timeout) clearTimeout(timeout)
       timeout = setTimeout(() => {
-        console.log('call me !', n++)
+        // console.log('call me !', n++)
         const regex = pRegex === '' ? /^[a-zA-Z àùéèç]+$/ : pRegex
         const newValue = e.target.value.replace('  ', ' ').toLowerCase() // s for any whitespace character ; g for global. All matches (don't return after first match)
         if (e.target.value !== newValue) {

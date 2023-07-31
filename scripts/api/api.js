@@ -11,16 +11,16 @@ export function getAllIngredient (recipes) {
 }
 // console.log(getAllIngredient(recipes))
 
-export function getAllKitchenAppliance (recipes) {
+export function getAllAppliance (recipes) {
   const set = new Set()
   recipes.forEach(app => {
     set.add(app.appliance.charAt(0).toUpperCase() + app.appliance.slice(1).toLowerCase())
   })
   return [...set].sort()
 }
-// console.log(getAllKitchenAppliance(recipes))
+// console.log(getAllAppliance(recipes))
 
-export function getAllCookingTools (recipes) {
+export function getAllUstensils (recipes) {
   const set = new Set()
   recipes.forEach(re => {
     re.ustensils.forEach(us => {
@@ -29,7 +29,7 @@ export function getAllCookingTools (recipes) {
   })
   return [...set].sort()
 }
-// console.log(getAllCookingTools(recipes))
+// console.log(getAllUstensils(recipes))
 
 export function getAllId (recipes) {
   const set = new Set()
