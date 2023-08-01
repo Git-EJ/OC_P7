@@ -41,17 +41,33 @@ export const filterFunction = () => {
   result.forEach(card => card.show())
   recipesCounter.cardCounter()
   cssByNumberOfCard()
+  filterSelectList(result)
+  console.log(result)
+}
 
-  // TODO reset li
-  // TODO message de suggestion quand pas de recette
+/**
+ *
+ * @param {Array} result array of DOM element card
+ * function for remove element in select btn if not in a recipe selected by tag(s)
+ */
+export const filterSelectList = (result) => {
+  const elements = document.querySelectorAll('.filter_content')
+  const listIngredient = result.map(res => res.ingredients.map(ings => ings.ingredient.toLowerCase()))
+  const listAppliance = result.map(res => res.appliance.toLowerCase())
+  const listUstensils = result.map(res => res.ustensils.map(ust => ust.toLowerCase()))
 
-  console.log('result', result)
-  result.forEach((res, i) => {
-    console.log([i], 'result-Ing', res.ingredients)
-    console.log([i], 'result-App', res.appliance)
-    console.log([i], 'result-Ust', res.ustensils)
+  elements.forEach(el => {
+    const listElement = el.textContent.toLowerCase()
+    const ingredientElement = listIngredient.some(ing => ing.includes(listElement))
+    const applianceElement = listAppliance.includes(listElement)
+    const ustensilsElement = listUstensils.some(ust => ust.includes(listElement))
+
+    el.hidden = !(ingredientElement || applianceElement || ustensilsElement)
+
+    tagsOnDisplay.forEach(tod => {
+      if (tod === listElement) el.hidden = true
+    })
   })
 }
-// const filterIngredient = document.querySelectorAll('filter_ingredients')
-// const filterAppliance = document.querySelectorAll('filter_ingredients')
-// const filterUstensils = document.querySelectorAll('filter_ingredients')
+
+// TODO message de suggestion quand pas de recette
