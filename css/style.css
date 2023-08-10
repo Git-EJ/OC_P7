@@ -329,7 +329,8 @@ body ::-webkit-scrollbar {
 .filter_container {
   display: none;
   width: 100%;
-  height: 25vh;
+  height: fit-content;
+  max-height: 25vh;
   overflow: auto;
   background: #ffffff;
 }
@@ -415,6 +416,9 @@ body ::-webkit-scrollbar {
   color: #EDEDED;
   font-size: 0.8em;
 }
+.filter_no-match {
+  text-align: center;
+}
 
 @media only screen and (max-width: 900px) {
   .filters_wrapper {
@@ -474,7 +478,7 @@ body ::-webkit-scrollbar {
 .card_container {
   width: 100%;
   height: 730px;
-  border-radius: 3%;
+  border-radius: 20px;
   background: #ffffff;
   overflow: hidden;
   font-family: "Roboto", sans-serif;
@@ -508,7 +512,7 @@ body ::-webkit-scrollbar {
   font-size: 0.7em;
 }
 .card_time_filter_one-card {
-  left: 84%;
+  left: 82%;
   top: 5%;
 }
 .card_content_container {

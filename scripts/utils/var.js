@@ -1,0 +1,5 @@
+export const headerWrapper = document.querySelector('.header_wrapper')
+export const filtersWrapper = document.querySelector('.filters_wrapper')
+export const recipesCounterContainer = document.querySelector('.recipes-counter_wrapper')
+export const tagsWrapper = document.querySelector('.tags_wrapper')
+export const cardsWrapper = document.querySelector('.cards_wrapper')

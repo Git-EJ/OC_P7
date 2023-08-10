@@ -1,9 +1,10 @@
 import { InputSearch } from '../components/inputSearch.js'
+import { headerWrapper } from './var.js'
 
 export class Header {
   constructor (onInput) {
     this.onInput = onInput
-    this.headerWrapper = document.querySelector('.header_wrapper')
+    this.headerWrapper = headerWrapper
     this.buildElements()
   }
 

@@ -1,6 +1,12 @@
 import { cards, header, recipesCounter } from '../index.js'
 import { cssByNumberOfCard } from '../components/card.js'
+import { cardsWrapper } from './var.js'
 
+/**
+ *
+ * @param {string} searchText user input in header input
+ * @returns array of DOMElements card, filtered by user input in header input
+ */
 export const searchFilter = (searchText) => {
   const search = searchText.toLowerCase()
   if (search.length < 3) return cards.cards
@@ -16,6 +22,11 @@ export const searchFilter = (searchText) => {
 
 export const tagsOnDisplay = []
 
+/**
+ *
+ * @param {Array<DOMElement>} filtered card filtered by searchFilter() header search bar input
+ * @returns array of DOMElements card, filtered by tags
+ */
 export const tagsFilter = (filtered) => {
   tagsOnDisplay.length = 0
   document.querySelectorAll('.tag_container').forEach(tag => {
@@ -30,7 +41,15 @@ export const tagsFilter = (filtered) => {
     )
   })
 }
-
+/**
+ * {1} call in index.js
+ * {2} call searchFilter() / filter by header input search
+ * {3} call tagsFilter() / filter by tags
+ * {4} call cardCounter() / update recipe counter
+ * {4} call cssByNumberofCard() / card wrapper css display change
+ * {5} call filterSelectList() / select li update according to the selected li filter(s)
+ * {6} call noFilterMatch() / error message when no filter match any recipes
+*/
 export const filterFunction = () => {
   const text = header.searchBar.value.trim()
 
@@ -42,13 +61,13 @@ export const filterFunction = () => {
   recipesCounter.cardCounter()
   cssByNumberOfCard()
   filterSelectList(result)
-  console.log(result)
+  noFiltermatch(result, text)
 }
 
 /**
  *
  * @param {Array} result array of DOM element card
- * function for remove element in select btn if not in a recipe selected by tag(s)
+ * function for remove element filter(li) in select btn if not in a recipe selected by tag(s) or li element filter
  */
 export const filterSelectList = (result) => {
   const elements = document.querySelectorAll('.filter_content')
@@ -70,4 +89,27 @@ export const filterSelectList = (result) => {
   })
 }
 
-// TODO message de suggestion quand pas de recette
+/**
+ *
+ * @param {Array} result array of DOM element card
+ * @param {String} text header search bar user input
+ */
+
+export const noFiltermatch = (result, text) => {
+  const filterNoMatchClass = cardsWrapper.querySelector('.filter_no-match')
+  if (result.length === 0 && !filterNoMatchClass) {
+    console.log('1')
+    const noMatch = document.createElement('div')
+    noMatch.classList.add('filter_no-match')
+    noMatch.textContent = 'Pas de recettes correspondantes à votre recherche'
+    cardsWrapper.appendChild(noMatch)
+  }
+  // noFiltermatchsuggestions(text, cards.cards)
+}
+
+export const noFiltermatchsuggestions = (text, cards) => { // TODO  a recuperer à la place de cards => 3 tableaux de string d'ingredient , appliance, ustensils
+}
+
+// TODO message de suggestions => nofiltermatchsuggestions
+// TODO centrage message noMatch dans card.js containerCount<= 1
+// TODO input search bar suggestions quand user input pdt la saisie

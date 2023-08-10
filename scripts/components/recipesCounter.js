@@ -1,3 +1,5 @@
+import { recipesCounterContainer } from '../utils/var.js'
+
 export class RecipesCounter {
   constructor () {
     this.extractElements()
@@ -5,8 +7,7 @@ export class RecipesCounter {
   }
 
   extractElements () {
-    this.recipesCounterContainer = document.querySelector('.recipes-counter_wrapper')
-    this.cardContainer = document.querySelectorAll('.card_container')
+    this.recipesCounterContainer = recipesCounterContainer
   }
 
   buildElements () {

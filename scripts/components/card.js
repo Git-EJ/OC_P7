@@ -1,11 +1,11 @@
 import { createElement, createImage } from '../utils/domElement.js'
+import { cardsWrapper } from '../utils/var.js'
 
 export class Card {
   constructor (recipe, cardsWrapper) {
     this.data = recipe
     this.element = this.buildElement()
     this.element.card = this
-    this.cardsWrapper = cardsWrapper
   }
 
   get id () {
@@ -106,11 +106,11 @@ export class Card {
   }
 
   show () {
+    const filterNoMatchClass = cardsWrapper.querySelector('.filter_no-match')
     this.cardContainer.classList.remove('hidden')
+    filterNoMatchClass && filterNoMatchClass.remove()
   }
 }
-
-const cardsWrapper = document.querySelector('.cards_wrapper')
 
 export function cssByNumberOfCard () {
   const timeLabels = cardsWrapper.querySelectorAll('.card_time')

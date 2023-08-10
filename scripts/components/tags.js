@@ -1,8 +1,10 @@
+import { filtersWrapper, tagsWrapper } from '../utils/var.js'
+
 export class Tags {
   constructor () {
     this.selectedTags = null
-    this.tagsWrapper = document.querySelector('.tags_wrapper')
-    this.listWrapper = document.querySelector('.filters_wrapper')
+    this.tagsWrapper = tagsWrapper
+    this.listWrapper = filtersWrapper
     this.buildTagsContainer()
     this.tagDisplay()
   }
@@ -74,9 +76,10 @@ export class Tags {
             this.selectedTags && this.selectedTags()
             const that = this
             const xMark = thisTag.querySelector('.tag_xmark')
-            xMark.addEventListener('click', () => {
+            xMark.addEventListener('click', (e) => {
               thisTag.remove()
               that.selectedTags && that.selectedTags()
+              e.stopPropagation() // prevent filter lists from being closed when click on xMark
             })
           }
         })
