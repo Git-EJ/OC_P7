@@ -1,6 +1,6 @@
 import { cards, header, recipesCounter } from '../index.js'
 import { cssByNumberOfCard } from '../components/card.js'
-import { cardsWrapper } from './var.js'
+import { cardsWrapper, filtersWrapper, tagsWrapper } from './var.js'
 
 /**
  *
@@ -29,7 +29,7 @@ export const tagsOnDisplay = []
  */
 export const tagsFilter = (filtered) => {
   tagsOnDisplay.length = 0
-  document.querySelectorAll('.tag_container').forEach(tag => {
+  tagsWrapper.querySelectorAll('.tag_container').forEach(tag => {
     tagsOnDisplay.push(tag.textContent.toLowerCase())
   })
 
@@ -70,8 +70,11 @@ export const filterFunction = () => {
  * function for remove element filter(li) in select btn if not in a recipe selected by tag(s) or li element filter
  */
 export const filterSelectList = (result) => {
-  const elements = document.querySelectorAll('.filter_content')
+  const elements = filtersWrapper.querySelectorAll('.filter_content')
   const listIngredient = result.map(res => res.ingredients.map(ings => ings.ingredient.toLowerCase()))
+  console.log('elem', elements)
+  console.log('res', result)
+  console.log('loi', listIngredient)
   const listAppliance = result.map(res => res.appliance.toLowerCase())
   const listUstensils = result.map(res => res.ustensils.map(ust => ust.toLowerCase()))
 

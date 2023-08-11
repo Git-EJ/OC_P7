@@ -1,3 +1,4 @@
+export const body = document.querySelector('body')
 export const headerWrapper = document.querySelector('.header_wrapper')
 export const filtersWrapper = document.querySelector('.filters_wrapper')
 export const recipesCounterContainer = document.querySelector('.recipes-counter_wrapper')

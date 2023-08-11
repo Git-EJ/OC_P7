@@ -1,4 +1,5 @@
 import { cards, recipesCounter } from '../index.js'
+import { filtersWrapper } from '../utils/var.js'
 
 /**
  * @param {String} Name for class an Id
@@ -132,7 +133,7 @@ export class InputSearch {
 
     const clickXmark = (e) => {
       if (e) {
-        this.filterContent = document.querySelectorAll('li')
+        this.filterContent = filtersWrapper.querySelectorAll('li')
         this.searchBarInput.value = ''
         this.filterContent.forEach(li => {
           li.classList.remove('hidden')

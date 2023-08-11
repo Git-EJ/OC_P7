@@ -1,7 +1,7 @@
 import { getAllUstensils, getAllIngredient, getAllAppliance } from '../api/api.js'
 import { InputSearch } from './inputSearch.js'
 import { recipes } from '../../data/recipes.js'
-import { filtersWrapper } from '../utils/var.js'
+import { body, filtersWrapper, tagsWrapper } from '../utils/var.js'
 
 export class Select {
   constructor (onInput) {
@@ -13,7 +13,7 @@ export class Select {
   }
 
   extractElements () {
-    this.body = document.querySelector('body')
+    this.body = body
     this.selectContainer = filtersWrapper
   }
 
@@ -145,8 +145,7 @@ export class Select {
 
     // close when click outside the filters area
     this.body.addEventListener('click', (e) => {
-      this.tags = document.querySelector('.tags_container')
-      // console.log(e.target)
+      this.tags = tagsWrapper.querySelector('.tags_container')
       if (!this.selectContainer.contains(e.target) && !this.tags.contains(e.target)) {
         filterContainerElement.style.display = 'none'
         btnElementFilterDD.classList.add('fa-chevron-down')

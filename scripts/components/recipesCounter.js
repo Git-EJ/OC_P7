@@ -1,4 +1,4 @@
-import { recipesCounterContainer } from '../utils/var.js'
+import { cardsWrapper, recipesCounterContainer } from '../utils/var.js'
 
 export class RecipesCounter {
   constructor () {
@@ -24,7 +24,7 @@ export class RecipesCounter {
   }
 
   cardCounter () {
-    this.cardContainer = document.querySelectorAll('.card_container:not(.hidden')
+    this.cardContainer = cardsWrapper.querySelectorAll('.card_container:not(.hidden')
     this.recipesCounterNumberContent.textContent = this.cardContainer.length
   }
 }
