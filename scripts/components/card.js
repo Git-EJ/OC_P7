@@ -106,9 +106,7 @@ export class Card {
   }
 
   show () {
-    const filterNoMatchClass = cardsWrapper.querySelector('.filter_no-match')
     this.cardContainer.classList.remove('hidden')
-    filterNoMatchClass && filterNoMatchClass.remove()
   }
 }
 

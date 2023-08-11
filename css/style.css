@@ -417,7 +417,7 @@ body ::-webkit-scrollbar {
   font-size: 0.8em;
 }
 .filter_no-match {
-  text-align: center;
+  font-size: 1.5em;
 }
 
 @media only screen and (max-width: 900px) {
@@ -469,7 +469,7 @@ body ::-webkit-scrollbar {
 .cards_wrapper_filter_two-cards {
   grid-template-columns: auto auto;
 }
-.cards_wrapper_filter_one-card {
+.cards_wrapper_filter_one-card, .cards_wrapper_filter_no-match {
   display: flex;
   justify-content: center;
   grid-template-columns: none;

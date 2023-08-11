@@ -1,4 +1,5 @@
 import { cards, recipesCounter } from '../index.js'
+import { displayCardsAfterNoFilteMatch } from '../utils/filter.js'
 import { filtersWrapper } from '../utils/var.js'
 
 /**
@@ -141,6 +142,7 @@ export class InputSearch {
         cards.cards.forEach(card => card.show())
         recipesCounter.cardCounter()
         this.xMark()
+        displayCardsAfterNoFilteMatch()
       }
     }
     this.searchBarXmark.addEventListener('click', clickXmark)

@@ -15,7 +15,8 @@
       grid-template-columns: auto auto ;
     }
 
-    &_filter_one-card {
+    &_filter_one-card,
+    &_filter_no-match {
       display: flex;
       justify-content: center;
       grid-template-columns: none;

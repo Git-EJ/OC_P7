@@ -72,9 +72,9 @@ export const filterFunction = () => {
 export const filterSelectList = (result) => {
   const elements = filtersWrapper.querySelectorAll('.filter_content')
   const listIngredient = result.map(res => res.ingredients.map(ings => ings.ingredient.toLowerCase()))
-  console.log('elem', elements)
-  console.log('res', result)
-  console.log('loi', listIngredient)
+  // console.log('elem', elements)
+  // console.log('res', result)
+  // console.log('loi', listIngredient)
   const listAppliance = result.map(res => res.appliance.toLowerCase())
   const listUstensils = result.map(res => res.ustensils.map(ust => ust.toLowerCase()))
 
@@ -101,13 +101,22 @@ export const filterSelectList = (result) => {
 export const noFiltermatch = (result, text) => {
   const filterNoMatchClass = cardsWrapper.querySelector('.filter_no-match')
   if (result.length === 0 && !filterNoMatchClass) {
-    console.log('1')
+    // console.log('1')
     const noMatch = document.createElement('div')
     noMatch.classList.add('filter_no-match')
     noMatch.textContent = 'Pas de recettes correspondantes à votre recherche'
     cardsWrapper.appendChild(noMatch)
+
+    cardsWrapper.classList.add('cards_wrapper_filter_no-match')
   }
   // noFiltermatchsuggestions(text, cards.cards)
+}
+
+export const displayCardsAfterNoFilteMatch = () => {
+  const filterNoMatchClassDiv = cardsWrapper.querySelector('.filter_no-match')
+  console.log('D', filterNoMatchClassDiv)
+  cardsWrapper.classList.remove('cards_wrapper_filter_no-match')
+  filterNoMatchClassDiv && filterNoMatchClassDiv.remove()
 }
 
 export const noFiltermatchsuggestions = (text, cards) => { // TODO  a recuperer à la place de cards => 3 tableaux de string d'ingredient , appliance, ustensils
