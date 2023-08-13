@@ -53,7 +53,7 @@ export const tagsFilter = (filtered) => {
 export const filterFunction = () => {
   const text = header.searchBar.value.trim()
 
-  const filtered = searchFilter(text)
+  const filtered = text === '' ? cards.cards : searchFilter(text)
   const result = tagsFilter(filtered)
 
   cards.cards.forEach(card => card.hide())
@@ -70,25 +70,43 @@ export const filterFunction = () => {
  * function for remove element filter(li) in select btn if not in a recipe selected by tag(s) or li element filter
  */
 export const filterSelectList = (result) => {
-  const elements = filtersWrapper.querySelectorAll('.filter_content')
-  const listIngredient = result.map(res => res.ingredients.map(ings => ings.ingredient.toLowerCase()))
-  // console.log('elem', elements)
-  // console.log('res', result)
-  // console.log('loi', listIngredient)
-  const listAppliance = result.map(res => res.appliance.toLowerCase())
-  const listUstensils = result.map(res => res.ustensils.map(ust => ust.toLowerCase()))
+  console.log(result.length)
+  const ingredients = filtersWrapper.querySelectorAll('.filter_ingredients')
+  const appliance = filtersWrapper.querySelectorAll('.filter_appliance')
+  const ustensils = filtersWrapper.querySelectorAll('.filter_ustensils')
+  const allElements = [...ingredients, ...appliance, ...ustensils]
 
-  elements.forEach(el => {
-    const listElement = el.textContent.toLowerCase()
-    const ingredientElement = listIngredient.some(ing => ing.includes(listElement))
-    const applianceElement = listAppliance.includes(listElement)
-    const ustensilsElement = listUstensils.some(ust => ust.includes(listElement))
+  const listIngredients = new Map()
+  ingredients.forEach(ing => {
+    const key = ing.textContent.toLowerCase()
+    listIngredients.set(key, ing)
+  })
 
-    el.hidden = !(ingredientElement || applianceElement || ustensilsElement)
+  const listAppliance = new Map()
+  appliance.forEach(app => {
+    const key = app.textContent.toLowerCase()
+    listAppliance.set(key, app)
+  })
 
-    tagsOnDisplay.forEach(tod => {
-      if (tod === listElement) el.hidden = true
+  const listUstensils = new Map()
+  ustensils.forEach(ust => {
+    const key = ust.textContent.toLowerCase()
+    listUstensils.set(key, ust)
+  })
+
+  allElements.forEach(el => {
+    el.hidden = true
+  })
+
+  result.forEach(res => {
+    res.ingredients.forEach(ing => {
+      const ingredient = ing.ingredient.toLowerCase()
+      listIngredients.get(ingredient).hidden = false
     })
+    res.ustensils.forEach(ust => {
+      listUstensils.get(ust.toLowerCase()).hidden = false
+    })
+    listAppliance.get(res.appliance.toLowerCase()).hidden = false
   })
 }
 
@@ -97,31 +115,14 @@ export const filterSelectList = (result) => {
  * @param {Array} result array of DOM element card
  * @param {String} text header search bar user input
  */
-
 export const noFiltermatch = (result, text) => {
-  const filterNoMatchClass = cardsWrapper.querySelector('.filter_no-match')
-  if (result.length === 0 && !filterNoMatchClass) {
-    // console.log('1')
-    const noMatch = document.createElement('div')
-    noMatch.classList.add('filter_no-match')
-    noMatch.textContent = 'Pas de recettes correspondantes à votre recherche'
-    cardsWrapper.appendChild(noMatch)
-
-    cardsWrapper.classList.add('cards_wrapper_filter_no-match')
-  }
-  // noFiltermatchsuggestions(text, cards.cards)
-}
-
-export const displayCardsAfterNoFilteMatch = () => {
-  const filterNoMatchClassDiv = cardsWrapper.querySelector('.filter_no-match')
-  console.log('D', filterNoMatchClassDiv)
-  cardsWrapper.classList.remove('cards_wrapper_filter_no-match')
-  filterNoMatchClassDiv && filterNoMatchClassDiv.remove()
+  const noMatch = cardsWrapper.querySelector('.filter_no-match')
+  noMatch.hidden = result.length > 0
+  cardsWrapper.classList.add('cards_wrapper_filter_no-match')
 }
 
 export const noFiltermatchsuggestions = (text, cards) => { // TODO  a recuperer à la place de cards => 3 tableaux de string d'ingredient , appliance, ustensils
 }
 
-// TODO message de suggestions => nofiltermatchsuggestions
-// TODO centrage message noMatch dans card.js containerCount<= 1
+// TODO message de suggestions => nofiltermatchsuggestions ==> approche poids de lettre
 // TODO input search bar suggestions quand user input pdt la saisie

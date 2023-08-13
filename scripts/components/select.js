@@ -94,15 +94,16 @@ export class Select {
     const ul = document.createElement('ul')
     ul.classList.add('filter_container')
     ul.id = id
-
-    this.buildSearchBar(ul).onInput = (e) => {
-      const search = e.target.value.toLowerCase()
+    const searchBar = this.buildSearchBar(ul)
+    searchBar.onInput = (e) => {
+      console.log(e)
+      const search = searchBar.searchBarInput.value.toLowerCase()
       const elements = [...ul.querySelectorAll('li')]
       elements.forEach(el => {
         if (!el.textContent.toLowerCase().startsWith(search)) {
-          el.classList.add('hidden')
+          el.hidden = true
         } else {
-          el.classList.remove('hidden')
+          el.hidden = false
         }
       })
     }

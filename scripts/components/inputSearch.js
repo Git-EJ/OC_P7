@@ -1,6 +1,4 @@
-import { cards, recipesCounter } from '../index.js'
-import { displayCardsAfterNoFilteMatch } from '../utils/filter.js'
-import { filtersWrapper } from '../utils/var.js'
+import { cardsWrapper } from '../utils/var.js'
 
 /**
  * @param {String} Name for class an Id
@@ -80,17 +78,14 @@ export class InputSearch {
   }
 
   validity (pRegex = '') {
-    // console.log('init input value', this.searchBarInput.value.trim())
     this.searchBarInput.value.trim() === '' ? this.searchBarInput.setCustomValidity('champ vide') : this.searchBarInput.setCustomValidity('')
     let timeout = null
     const that = this
     // let n = 0
 
     const callBackInput = (e) => {
-      // console.log('click')
       if (timeout) clearTimeout(timeout)
       timeout = setTimeout(() => {
-        // console.log('call me !', n++)
         const regex = pRegex === '' ? /^[a-zA-Z àùéèç]+$/ : pRegex
         const newValue = e.target.value.replace('  ', ' ').toLowerCase() // s for any whitespace character ; g for global. All matches (don't return after first match)
         if (e.target.value !== newValue) {
@@ -99,8 +94,7 @@ export class InputSearch {
 
         if (e.target.value.trim() === '') {
           e.target.setCustomValidity('recherche vide')
-          cards.cards.forEach(card => card.show())
-          recipesCounter.cardCounter()
+          that.onInput && that.onInput(e)
         } else if (!regex.test(e.target.value)) {
           e.target.setCustomValidity('Caractère(s) non autorisé(s)')
         } else {
@@ -134,15 +128,9 @@ export class InputSearch {
 
     const clickXmark = (e) => {
       if (e) {
-        this.filterContent = filtersWrapper.querySelectorAll('li')
         this.searchBarInput.value = ''
-        this.filterContent.forEach(li => {
-          li.classList.remove('hidden')
-        })
-        cards.cards.forEach(card => card.show())
-        recipesCounter.cardCounter()
-        this.xMark()
-        displayCardsAfterNoFilteMatch()
+        this.onInput && this.onInput(e)
+        cardsWrapper.classList.remove('cards_wrapper_filter_no-match')
       }
     }
     this.searchBarXmark.addEventListener('click', clickXmark)
