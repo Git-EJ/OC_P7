@@ -11,11 +11,6 @@ export const searchFilter = (searchText) => {
   const search = searchText.toLowerCase()
   if (search.length < 3) return cards.cards
 
-  // const filteredCards = cards.cards.filter(card => {
-  //   return card.name.toLowerCase().includes(search) ||
-  //          card.description.toLowerCase().includes(search) ||
-  //          card.ingredients.filter(ing => ing.ingredient.toLowerCase().includes(search)).length > 0
-  // })
   const filteredCards = []
 
   for (let c = 0 ; c < cards.cards.length ; c++) {
@@ -45,18 +40,36 @@ export const tagsOnDisplay = []
  */
 export const tagsFilter = (filtered) => {
   tagsOnDisplay.length = 0
-  tagsWrapper.querySelectorAll('.tag_container').forEach(tag => {
+  tagsWrapper.querySelectorAll('.tag_container').forEach(tag => { 
     tagsOnDisplay.push(tag.textContent.toLowerCase())
   })
 
-  return filtered.filter(card => {
-    return tagsOnDisplay.every(tag =>
-      card.appliance.toLowerCase().includes(tag) ||
-        card.ustensils.some(ust => ust.toLowerCase().includes(tag)) ||
-        card.ingredients.filter(ing => ing.ingredient.toLowerCase().includes(tag)).length > 0
-    )
-  })
+//   return filtered.filter(card => {
+//     return tagsOnDisplay.every(tag =>
+//       card.appliance.toLowerCase().includes(tag) ||
+//         card.ustensils.some(ust => ust.toLowerCase().includes(tag)) ||
+//         card.ingredients.filter(ing => ing.ingredient.toLowerCase().includes(tag)).length > 0
+//     )
+//   })
+
+const filteredTags = []
+
+  for (let f = 0 ; f < filtered.length ; f++) {
+    const filteredCard = filtered[f]
+    const filteredAllTags = tagsOnDisplay.every(tag => {
+      const filteredCardAppliance = filteredCard.appliance.toLowerCase().includes(tag)
+      const filteredCArdUstensils = filteredCard.ustensils.some(ust => ust.toLowerCase().includes(tag))
+      const filteredCardIngredients = filteredCard.ingredients.some(ing => ing.ingredient.toLowerCase().includes(tag))
+      
+      return filteredCardAppliance || filteredCArdUstensils ||filteredCardIngredients
+    })
+    if (filteredAllTags) {
+      filteredTags.push(filteredCard)
+    }
+  }
+  return filteredTags
 }
+
 /**
  * {1} call in index.js
  * {2} call searchFilter() / filter by header input search
@@ -77,7 +90,7 @@ export const filterFunction = () => {
   recipesCounter.cardCounter()
   cssByNumberOfCard()
   filterSelectList(result)
-  noFiltermatch(result, text)
+  noFiltermatch(result)
 }
 
 /**
@@ -131,14 +144,8 @@ export const filterSelectList = (result) => {
  * @param {Array} result array of DOM element card
  * @param {String} text header search bar user input
  */
-export const noFiltermatch = (result, text) => {
+export const noFiltermatch = (result) => {
   const noMatch = cardsWrapper.querySelector('.filter_no-match')
   noMatch.hidden = result.length > 0
   cardsWrapper.classList.add('cards_wrapper_filter_no-match')
 }
-
-export const noFiltermatchsuggestions = (text, cards) => { // TODO  a recuperer à la place de cards => 3 tableaux de string d'ingredient , appliance, ustensils
-}
-
-// TODO message de suggestions => nofiltermatchsuggestions ==> approche poids de lettre
-// TODO input search bar suggestions quand user input pdt la saisie
