@@ -11,12 +11,28 @@ export const searchFilter = (searchText) => {
   const search = searchText.toLowerCase()
   if (search.length < 3) return cards.cards
 
-  const filteredCards = cards.cards.filter(card => {
-    return card.name.toLowerCase().includes(search) ||
-           card.description.toLowerCase().includes(search) ||
-           card.ingredients.filter(ing => ing.ingredient.toLowerCase().includes(search)).length > 0
-  })
+  // const filteredCards = cards.cards.filter(card => {
+  //   return card.name.toLowerCase().includes(search) ||
+  //          card.description.toLowerCase().includes(search) ||
+  //          card.ingredients.filter(ing => ing.ingredient.toLowerCase().includes(search)).length > 0
+  // })
+  const filteredCards = []
 
+  for (let c = 0 ; c < cards.cards.length ; c++) {
+    const card = cards.cards[c]
+    const cardName = card.name.toLowerCase().includes(search)
+    const cardDescription = card.description.toLowerCase().includes(search)
+
+    let cardIngredient = null
+
+    for (let i = 0 ; i < card.ingredients.length ; i++) {
+      const cardIngredients = card.ingredients[i]
+      cardIngredient = cardIngredients.ingredient.toLocaleLowerCase().includes(search)
+    } 
+    if (cardName || cardDescription || cardIngredient) {
+      filteredCards.push(card)
+    }
+  }
   return filteredCards
 }
 
