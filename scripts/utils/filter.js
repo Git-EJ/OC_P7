@@ -44,14 +44,6 @@ export const tagsFilter = (filtered) => {
     tagsOnDisplay.push(tag.textContent.toLowerCase())
   })
 
-//   return filtered.filter(card => {
-//     return tagsOnDisplay.every(tag =>
-//       card.appliance.toLowerCase().includes(tag) ||
-//         card.ustensils.some(ust => ust.toLowerCase().includes(tag)) ||
-//         card.ingredients.filter(ing => ing.ingredient.toLowerCase().includes(tag)).length > 0
-//     )
-//   })
-
 const filteredTags = []
 
   for (let f = 0 ; f < filtered.length ; f++) {
