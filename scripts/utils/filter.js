@@ -11,24 +11,21 @@ export const searchFilter = (searchText) => {
   const search = searchText.toLowerCase()
   if (search.length < 3) return cards.cards
 
-  const filteredCards = []
+  const filteredCardsBySearch = []
 
-  for (let c = 0 ; c < cards.cards.length ; c++) {
-    const card = cards.cards[c]
-    const cardName = card.name.toLowerCase().includes(search)
-    const cardDescription = card.description.toLowerCase().includes(search)
-
-    let cardIngredient = null
-
-    for (let i = 0 ; i < card.ingredients.length ; i++) {
-      const cardIngredients = card.ingredients[i]
-      cardIngredient = cardIngredients.ingredient.toLocaleLowerCase().includes(search)
-    } 
-    if (cardName || cardDescription || cardIngredient) {
-      filteredCards.push(card)
+  for (let card of cards.cards) {
+    if (card.name.toLowerCase().includes(search) || card.description.toLowerCase().includes(search)) {
+      filteredCardsBySearch.push(card)
+    } else {
+      for (let cardIngredients of card.ingredients) {
+        if (cardIngredients.ingredient.toLocaleLowerCase().includes(search)) {
+          filteredCardsBySearch.push(card)
+          break
+        }
+      }
     }
   }
-  return filteredCards
+  return filteredCardsBySearch
 }
 
 export const tagsOnDisplay = []
@@ -40,26 +37,26 @@ export const tagsOnDisplay = []
  */
 export const tagsFilter = (filtered) => {
   tagsOnDisplay.length = 0
-  tagsWrapper.querySelectorAll('.tag_container').forEach(tag => { 
+  tagsWrapper.querySelectorAll('.tag_container').forEach(tag => {
     tagsOnDisplay.push(tag.textContent.toLowerCase())
   })
 
-const filteredTags = []
+  const filteredCardsByTags = []
 
-  for (let f = 0 ; f < filtered.length ; f++) {
-    const filteredCard = filtered[f]
-    const filteredAllTags = tagsOnDisplay.every(tag => {
-      const filteredCardAppliance = filteredCard.appliance.toLowerCase().includes(tag)
-      const filteredCArdUstensils = filteredCard.ustensils.some(ust => ust.toLowerCase().includes(tag))
-      const filteredCardIngredients = filteredCard.ingredients.some(ing => ing.ingredient.toLowerCase().includes(tag))
-      
-      return filteredCardAppliance || filteredCArdUstensils ||filteredCardIngredients
-    })
+  for (let filteredCard of filtered) {
+    const filteredCardAppliance = filteredCard.appliance.toLowerCase()
+    const filteredCArdUstensils = filteredCard.ustensils.map(ust => ust.toLowerCase())
+    const filteredCardIngredients = filteredCard.ingredients.map(ing => ing.ingredient.toLowerCase())
+    const filteredAllTags = tagsOnDisplay.every(tag =>
+      filteredCardAppliance.includes(tag) ||
+      filteredCArdUstensils.includes(tag) ||
+      filteredCardIngredients.includes(tag)
+    )
     if (filteredAllTags) {
-      filteredTags.push(filteredCard)
+      filteredCardsByTags.push(filteredCard)
     }
   }
-  return filteredTags
+  return filteredCardsByTags
 }
 
 /**
@@ -83,7 +80,6 @@ export const filterFunction = () => {
   cssByNumberOfCard()
   filterSelectList(result)
   noFiltermatch(result)
-  cardsWrapper.classList.remove('cards_wrapper_filter_no-match') //TODO when tag(s) remove without no cards display
 }
 
 /**
