@@ -62,7 +62,6 @@ export const filterFunction = () => {
   cssByNumberOfCard()
   filterSelectList(result)
   noFiltermatch(result, text)
-  cardsWrapper.classList.remove('cards_wrapper_filter_no-match') //TODO when tag(s) remove without no cards display
 }
 
 /**
