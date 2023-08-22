@@ -13,11 +13,11 @@ export const searchFilter = (searchText) => {
 
   const filteredCardsBySearch = []
 
-  for (let card of cards.cards) {
+  for (const card of cards.cards) {
     if (card.name.toLowerCase().includes(search) || card.description.toLowerCase().includes(search)) {
       filteredCardsBySearch.push(card)
     } else {
-      for (let cardIngredients of card.ingredients) {
+      for (const cardIngredients of card.ingredients) {
         if (cardIngredients.ingredient.toLocaleLowerCase().includes(search)) {
           filteredCardsBySearch.push(card)
           break
@@ -43,7 +43,7 @@ export const tagsFilter = (filtered) => {
 
   const filteredCardsByTags = []
 
-  for (let filteredCard of filtered) {
+  for (const filteredCard of filtered) {
     const filteredCardAppliance = filteredCard.appliance.toLowerCase()
     const filteredCArdUstensils = filteredCard.ustensils.map(ust => ust.toLowerCase())
     const filteredCardIngredients = filteredCard.ingredients.map(ing => ing.ingredient.toLowerCase())
