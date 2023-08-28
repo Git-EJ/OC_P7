@@ -80,6 +80,7 @@ export const filterFunction = () => {
   cssByNumberOfCard()
   filterSelectList(result)
   noFiltermatch(result)
+  cardsWrapper.classList.remove('cards_wrapper_filter_no-match')
 }
 
 /**
