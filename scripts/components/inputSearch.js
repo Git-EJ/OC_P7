@@ -129,8 +129,8 @@ export class InputSearch {
     const clickXmark = (e) => {
       if (e) {
         this.searchBarInput.value = ''
-        this.onInput && this.onInput(e)
         cardsWrapper.classList.remove('cards_wrapper_filter_no-match')
+        this.onInput && this.onInput(e)
       }
     }
     this.searchBarXmark.addEventListener('click', clickXmark)

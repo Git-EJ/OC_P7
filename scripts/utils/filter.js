@@ -61,7 +61,9 @@ export const filterFunction = () => {
   recipesCounter.cardCounter()
   cssByNumberOfCard()
   filterSelectList(result)
-  noFiltermatch(result, text)
+  if (result.length === 0) {
+    noFiltermatch(result)
+  }
 }
 
 /**
@@ -71,6 +73,10 @@ export const filterFunction = () => {
  */
 export const filterSelectList = (result) => {
   console.log(result.length)
+  if (result.length > 0) {
+    const noMatch = cardsWrapper.querySelector('.filter_no-match')
+    noMatch.hidden = true
+  }
   const ingredients = filtersWrapper.querySelectorAll('.filter_ingredients')
   const appliance = filtersWrapper.querySelectorAll('.filter_appliance')
   const ustensils = filtersWrapper.querySelectorAll('.filter_ustensils')
@@ -115,14 +121,9 @@ export const filterSelectList = (result) => {
  * @param {Array} result array of DOM element card
  * @param {String} text header search bar user input
  */
-export const noFiltermatch = (result, text) => {
+export const noFiltermatch = (result) => {
+  console.log('result', result)
   const noMatch = cardsWrapper.querySelector('.filter_no-match')
   noMatch.hidden = result.length > 0
   cardsWrapper.classList.add('cards_wrapper_filter_no-match')
 }
-
-export const noFiltermatchsuggestions = (text, cards) => { // TODO  a recuperer à la place de cards => 3 tableaux de string d'ingredient , appliance, ustensils
-}
-
-// TODO message de suggestions => nofiltermatchsuggestions ==> approche poids de lettre
-// TODO input search bar suggestions quand user input pdt la saisie
