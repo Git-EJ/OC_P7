@@ -79,8 +79,9 @@ export const filterFunction = () => {
   recipesCounter.cardCounter()
   cssByNumberOfCard()
   filterSelectList(result)
-  noFiltermatch(result)
-  cardsWrapper.classList.remove('cards_wrapper_filter_no-match')
+  if (result.length === 0) {
+    noFiltermatch(result)
+  }
 }
 
 /**
@@ -90,6 +91,10 @@ export const filterFunction = () => {
  */
 export const filterSelectList = (result) => {
   console.log(result.length)
+  if (result.length > 0) {
+    const noMatch = cardsWrapper.querySelector('.filter_no-match')
+    noMatch.hidden = true
+  }
   const ingredients = filtersWrapper.querySelectorAll('.filter_ingredients')
   const appliance = filtersWrapper.querySelectorAll('.filter_appliance')
   const ustensils = filtersWrapper.querySelectorAll('.filter_ustensils')
