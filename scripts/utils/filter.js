@@ -9,12 +9,12 @@ import { cardsWrapper, filtersWrapper, tagsWrapper } from './var.js'
  */
 export const searchFilter = (searchText) => {
   const search = searchText.toLowerCase()
-  if (search.length < 3) return cards.cards
+  if (search.length <= 3) return cards.cards
 
   const filteredCards = cards.cards.filter(card => {
     return card.name.toLowerCase().includes(search) ||
            card.description.toLowerCase().includes(search) ||
-           card.ingredients.filter(ing => ing.ingredient.toLowerCase().includes(search)).length > 0
+           !!card.ingredients.find(ing => ing.ingredient.toLowerCase().includes(search))
   })
 
   return filteredCards
@@ -34,11 +34,10 @@ export const tagsFilter = (filtered) => {
   })
 
   return filtered.filter(card => {
-    console.log(card)
     return tagsOnDisplay.every(tag =>
       card.appliance.toLowerCase().includes(tag) ||
         card.ustensils.some(ust => ust.toLowerCase().includes(tag)) ||
-        card.ingredients.filter(ing => ing.ingredient.toLowerCase().includes(tag)).length > 0
+        !!card.ingredients.find(ing => ing.ingredient.toLowerCase().includes(tag))
     )
   })
 }

@@ -620,7 +620,6 @@ body ::-webkit-scrollbar {
   width: 30%;
   padding: clamp(0.5em, 1.2vw, 1.4em);
   border-radius: 5px;
-  margin-bottom: 2em;
 }
 .tag_text {
   font-family: "roboto", sans-serif;
