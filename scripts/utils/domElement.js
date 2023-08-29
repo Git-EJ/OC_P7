@@ -1,3 +1,11 @@
+/**
+ *
+ * @param {string} src path for img
+ * @param {string} alt for img
+ * @param {Array<string>} classes class for img
+ * @param {NodeElement} parent or null
+ * @returns {DOMElement} img for recipe
+ */
 export const createImage = (src, alt, classes, parent = null) => {
   const img = document.createElement('img')
   classes && classes.length && img.classList.add(...classes)
