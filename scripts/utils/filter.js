@@ -90,7 +90,6 @@ export const filterFunction = () => {
  * function for remove element filter(li) in select btn if not in a recipe selected by tag(s) or li element filter
  */
 export const filterSelectList = (result) => {
-  console.log(result.length)
   if (result.length > 0) {
     const noMatch = cardsWrapper.querySelector('.filter_no-match')
     noMatch.hidden = true
@@ -140,7 +139,7 @@ export const filterSelectList = (result) => {
  * @param {String} text header search bar user input
  */
 export const noFiltermatch = (result) => {
-  const noMatch = cardsWrapper.querySelector('.filter_no-match')
+  const noMatch = cardsWrapper.querySelector('.filter_no-match') //text for no match
   noMatch.hidden = result.length > 0
-  cardsWrapper.classList.add('cards_wrapper_filter_no-match')
+  cardsWrapper.classList.add('cards_wrapper_filter_no-match') // center the no match text
 }
