@@ -60,7 +60,6 @@ export class Tags {
       const className = menu.tagClassName
       menu.list.forEach(li => {
         li.addEventListener('click', (e) => {
-          // console.log(e.target.textContent)
           let tagDisplay = false
 
           const tags = this.tagsWrapper.querySelectorAll('.tag_container')

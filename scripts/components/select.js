@@ -96,7 +96,6 @@ export class Select {
     ul.id = id
     const searchBar = this.buildSearchBar(ul)
     searchBar.onInput = (e) => {
-      console.log(e)
       const search = searchBar.searchBarInput.value.toLowerCase()
       const elements = [...ul.querySelectorAll('li')]
       elements.forEach(el => {

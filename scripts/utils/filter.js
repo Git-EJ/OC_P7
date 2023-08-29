@@ -34,6 +34,7 @@ export const tagsFilter = (filtered) => {
   })
 
   return filtered.filter(card => {
+    console.log(card)
     return tagsOnDisplay.every(tag =>
       card.appliance.toLowerCase().includes(tag) ||
         card.ustensils.some(ust => ust.toLowerCase().includes(tag)) ||
@@ -72,7 +73,6 @@ export const filterFunction = () => {
  * function for remove element filter(li) in select btn if not in a recipe selected by tag(s) or li element filter
  */
 export const filterSelectList = (result) => {
-  console.log(result.length)
   if (result.length > 0) {
     const noMatch = cardsWrapper.querySelector('.filter_no-match')
     noMatch.hidden = true
@@ -119,10 +119,8 @@ export const filterSelectList = (result) => {
 /**
  *
  * @param {Array} result array of DOM element card
- * @param {String} text header search bar user input
  */
 export const noFiltermatch = (result) => {
-  console.log('result', result)
   const noMatch = cardsWrapper.querySelector('.filter_no-match')
   noMatch.hidden = result.length > 0
   cardsWrapper.classList.add('cards_wrapper_filter_no-match')

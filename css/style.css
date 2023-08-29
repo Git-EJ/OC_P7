@@ -101,9 +101,9 @@ a {
 html,
 body {
   max-width: 1440px;
-  height: 2000px;
   margin: 0 auto;
   font-family: "Anton", sans-serif;
+  background-color: #EDEDED;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -620,7 +620,7 @@ body ::-webkit-scrollbar {
   width: 30%;
   padding: clamp(0.5em, 1.2vw, 1.4em);
   border-radius: 5px;
-  margin-bottom: 2emv;
+  margin-bottom: 2em;
 }
 .tag_text {
   font-family: "roboto", sans-serif;
