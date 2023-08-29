@@ -1819,10 +1819,23 @@ const searchFilter = (searchText) => {
   return filteredCards
 }
 
-const NbTests = 1000
-const echantillon = ['coco', '', "long long long c'est trop long", '1234546', 'beurre', 'uuuu', 'basilic', 'toto', 'Mixer']
+const testArray = []
+cards.cards.forEach(card => {
+  card.ingredients.forEach(ing => {
+    testArray.push(ing.ingredient)
+  })
+  testArray.push(card.appliance)
+  card.ustensils.forEach(ust => {
+    testArray.push(ust)
+  })
+})
+// console.log(testArray)
 
-const T0_2 = Date.now() + 2000
+const NbTests = 100
+// const echantillon = ['coco', '', "long long long c'est trop long", '1234546', 'beurre', 'uuuu', 'basilic', 'toto', 'Mixer']
+const echantillon = testArray // 426 elements
+
+const T0_2 = Date.now() + 5000
 let nb2 = 0
 while (Date.now() < T0_2) {
   for (const s of echantillon) {
@@ -1830,7 +1843,7 @@ while (Date.now() < T0_2) {
     nb2++
   }
 }
-const T0_1 = Date.now() + 2000
+const T0_1 = Date.now() + 5000
 let nb1 = 0
 while (Date.now() < T0_1) {
   for (const s of echantillon) {
@@ -1859,12 +1872,12 @@ const res1 = t2 - t1
 const res2 = t4 - t3
 const max = Math.min(res1, res2)
 document.querySelector('.result').innerHTML = `
-<div>Filter method, nbre d'opérations pour 2000 ms :${nb1}</div>
-<div>for loop, nbre d'opérations pour 2000 ms :${nb2}</div>
+<div>Filter method, nbre d'opérations pour 5000 ms :${nb1}</div>
+<div>for loop, nbre d'opérations pour 5000 ms :${nb2}</div>
 <br>
 <div>result for loop : en ${(t4 - t3)} ms - ${(100 - (100 * (res2 - max)) / max)}%</div>
 <div>result filter method : en ${(t2 - t1)} ms - ${(100 - (100 * (res1 - max)) / max)}%</div>
 `
 
-console.log('%cresult for loop  ', 'color:lime;font-size:20px;', (t4 - t3) + 'ms', (100 - (100 * (res2 - max)) / max) + '%')
-console.log('%cresult filter method', 'color:cyan;font-size:20px;', (t2 - t1) + 'ms', (100 - (100 * (res1 - max)) / max) + '%')
+// console.log('%cresult for loop  ', 'color:lime;font-size:20px;', (t4 - t3) + 'ms', (100 - (100 * (res2 - max)) / max) + '%')
+// console.log('%cresult filter method', 'color:cyan;font-size:20px;', (t2 - t1) + 'ms', (100 - (100 * (res1 - max)) / max) + '%')
