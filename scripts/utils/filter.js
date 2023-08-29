@@ -139,7 +139,7 @@ export const filterSelectList = (result) => {
  * @param {String} text header search bar user input
  */
 export const noFiltermatch = (result) => {
-  const noMatch = cardsWrapper.querySelector('.filter_no-match') //text for no match
+  const noMatch = cardsWrapper.querySelector('.filter_no-match') // text for no match
   noMatch.hidden = result.length > 0
   cardsWrapper.classList.add('cards_wrapper_filter_no-match') // center the no match text
 }
