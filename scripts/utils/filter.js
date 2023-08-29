@@ -9,7 +9,7 @@ import { cardsWrapper, filtersWrapper, tagsWrapper } from './var.js'
  */
 export const searchFilter = (searchText) => {
   const search = searchText.toLowerCase()
-  if (search.length < 3) return cards.cards
+  if (search.length <= 3) return cards.cards
 
   const filteredCardsBySearch = []
 
