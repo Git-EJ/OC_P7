@@ -10,11 +10,9 @@ https://git-ej.github.io/OC_P7/
  
 </div><br>
 
-<h2>Les Petits Plats: Human Resource app</h2>
+<h2>Les Petits Plats: SEARCH OVER 1500 RECIPES</h2>
 
 <strong>GitHub Page:</strong> https://git-ej.github.io/OC_P7/
-
-App for employee management, employee creation with a form, and a datatable for the list of employees including their informations.
 
 
 ![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat)
