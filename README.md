@@ -6,11 +6,13 @@ https://git-ej.github.io/OC_P7/
 
 <div align='center'>
 
- <img src="./assets/logo/logo.png" alt="HR Net Logo" title="HR Net Logo" width="150" height="150"/>
+ <img src="./assets/logo/logo.png" alt="HR Net Logo" title="HR Net Logo" width="auto" height="auto"/>
  
 </div><br>
 
 <h2>Les Petits Plats: Human Resource app</h2>
+
+<strong>GitHub Page:</strong> https://git-ej.github.io/OC_P7/
 
 App for employee management, employee creation with a form, and a datatable for the list of employees including their informations.
 
