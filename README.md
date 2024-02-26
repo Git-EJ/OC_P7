@@ -2,7 +2,7 @@
 
 <div align='center'>
 
- <img src="./assets/logo/logo.png" alt="HR Net Logo" title="HR Net Logo" width="auto" height="auto"/>
+ <img src="./assets/logo/logo.png" alt="Les petits plats Logo" title="Les petits plats Logo" width="auto" height="auto"/>
  
 </div><br>
 
