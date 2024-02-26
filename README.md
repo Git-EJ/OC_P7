@@ -20,6 +20,6 @@
 
 <strong>Project:</strong> From scratch. 
 
-<strong>Project goal:</strong> Create a recipes search algorithm with JS, algo performance measurement with my own test: https://github.com/Git-EJ/OC_P7/blob/loop_for-let/scripts/utils/bench.js. 
+<strong>Project goal:</strong> Create a recipes search algorithm with JS, algo performance measurement with my own test: [test](https://github.com/Git-EJ/OC_P7/blob/loop_for-let/scripts/utils/bench.js).
 
 <strong>Personal addition:</strong> The contents of the search filters are updated according to the selected tags, tags categories by colors, responsive design.
