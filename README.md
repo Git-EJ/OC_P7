@@ -35,3 +35,11 @@ npm i
 ```
 npm run sass
 ```
+
+<strong>Screenshot:</strong>
+
+<div align='center'>
+
+ <img src="./assets/screenshots/screenshot_lesPetitsPlats-homepage.png" alt="Les Petits Plats Homepage screenshot" title="Les Petits Plats Homepage screenshot" width="auto" height="auto"/>
+ 
+</div>
